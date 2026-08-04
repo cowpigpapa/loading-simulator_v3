@@ -1,5 +1,6 @@
 .tools/
 node_modules/
+dist/
 outputs/
 qa.mjs
 build-sample-upload.mjs
