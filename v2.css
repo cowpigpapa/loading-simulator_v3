@@ -127,6 +127,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .simulation-status.done i, .simulation-status em u { background: #0071e3; }
 .simulation-status.warning { color: #9a5b00; border-color: rgba(154,91,0,.3); background: #fff8e8; }
 .simulation-status.warning i { background: #c47a00; }
+.band-toggle i { background: #f3c400 !important; }
 .safety-notice { display: flex; gap: 10px; margin-top: 12px; padding: 12px 16px; border: 1px solid rgba(0,0,0,.08); border-radius: 11px; color: #6e6e73; background: #fafafc; font-size: 11px; line-height: 1.47; }
 .safety-notice strong { flex: 0 0 auto; color: #1d1d1f; }
 .container-tabs button { border-radius: 999px; }
