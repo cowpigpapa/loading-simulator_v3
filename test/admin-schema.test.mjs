@@ -5,6 +5,7 @@ import {readFile} from 'node:fs/promises';
 const sql=await readFile(new URL('../supabase/migrations/20260811070000_add_admin_access_stats.sql',import.meta.url),'utf8');
 const projectCountSql=await readFile(new URL('../supabase/migrations/20260811080000_add_admin_project_count.sql',import.meta.url),'utf8');
 const userStatsSql=await readFile(new URL('../supabase/migrations/20260811081000_add_user_simulation_stats.sql',import.meta.url),'utf8');
+const visitorSql=await readFile(new URL('../supabase/migrations/20260811082000_unify_visitor_counters.sql',import.meta.url),'utf8');
 
 test('admin access is enforced by Supabase and seeds the owner email',()=>{
   assert.match(sql,/juan\.hjlee@gmail\.com/);
@@ -26,4 +27,10 @@ test('simulation and per-user project stats are server-side and admin protected'
   assert.match(userStatsSql,/create or replace function public\.admin_user_stats\(\)/i);
   assert.match(userStatsSql,/if not public\.is_admin\(\)/i);
   assert.match(userStatsSql,/left join public\.projects p on p\.user_id = ua\.user_id/i);
+});
+
+test('daily and total visitor counts use one atomic daily visit rule',()=>{
+  assert.match(visitorSql,/create or replace function public\.get_visit_counts/i);
+  assert.match(visitorSql,/greatest\(visitor_counts\.count[\s\S]+daily_count\)/i);
+  assert.match(visitorSql,/grant execute on function public\.get_visit_counts\(text, boolean\) to anon, authenticated/i);
 });
