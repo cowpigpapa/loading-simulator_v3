@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="styles.css?v=20260728-14">
   <link rel="stylesheet" href="layout-fixes.css?v=20260728-1">
   <link rel="stylesheet" href="v2.css?v=20260804-1">
-  <link rel="stylesheet" href="v3-projects.css?v=20260811-7">
+  <link rel="stylesheet" href="v3-projects.css?v=20260811-8">
 </head>
 <body>
   <header class="topbar">
@@ -93,6 +93,7 @@
             <option value="sequence">1. 안전 적재 · 안정적인 1단 바닥 배치</option>
             <option value="volume">2. 최대 적재 · 공간 집약 + 적극적인 2단 적재</option>
             <option value="intelligent" selected>3. 자동 추천 · 화물 특성에 맞춰 전략 선택</option>
+            <option value="width">4. 폭 우선 · 짧은 방향의 빈 공간 최소화</option>
           </select>
         </label><button class="top-simulate" id="recalculateOptions" type="button" disabled>시뮬레이션 실행 <b>→</b></button></div>
       </aside>
@@ -153,13 +154,14 @@
 
   <dialog id="policyDialog" class="project-dialog policy-dialog">
     <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
-    <span class="result-kicker">ALGORITHM POLICY · v1.0</span>
+    <span class="result-kicker">ALGORITHM POLICY · v1.2</span>
     <h2>알고리즘 정책과 한계</h2>
     <p>LoadWise의 결과는 작업 검토를 위한 휴리스틱 제안이며 전역 최적해나 안전 인증을 의미하지 않습니다.</p>
     <div class="policy-summary">
       <article><b>안전형</b><strong>상부 지지 100%</strong><span>바닥 우선·중심 지지·측면 안정성</span></article>
       <article><b>최대적재형</b><strong>상부 지지 70% 이상</strong><span>적재 수량 우선·중심 조건 유지</span></article>
       <article><b>자동 추천</b><strong>화물 특성 기반</strong><span>안전형과 최대적재형 중 선택</span></article>
+      <article><b>폭 우선형</b><strong>짧은 방향 우선</strong><span>긴 방향 여유를 허용하고 잔여 폭·내부 틈 최소화</span></article>
     </div>
     <div class="policy-sections">
       <details open><summary>현재 계산 로직</summary><ol><li>입력 데이터를 공통 제품 모델로 정규화합니다.</li><li>허용 회전과 Extreme Point 후보를 생성합니다.</li><li>경계·충돌·중량·상부 금지·바닥 및 중심 지지를 검사합니다.</li><li>낮은 위치 → 안쪽 → 좌측 순서와 공간 점수로 후보를 비교합니다.</li><li>미배치 화물은 다음 컨테이너에서 다시 계산합니다.</li></ol></details>
@@ -186,8 +188,8 @@
   <script src="vendor/three.min.js?v=0.160.0"></script>
   <script src="vendor/supabase.js?v=2.112.2"></script>
   <script src="supabase-config.js"></script>
-  <script src="project-model.js?v=20260811-2"></script>
-  <script src="app.js?v=20260811-7"></script>
+  <script src="project-model.js?v=20260811-3"></script>
+  <script src="app.js?v=20260811-8"></script>
   <script src="project-store.js?v=20260811-7"></script>
 </body>
 </html>
