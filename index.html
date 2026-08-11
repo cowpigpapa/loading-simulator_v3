@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="styles.css?v=20260728-14">
   <link rel="stylesheet" href="layout-fixes.css?v=20260728-1">
   <link rel="stylesheet" href="v2.css?v=20260804-1">
-  <link rel="stylesheet" href="v3-projects.css?v=20260811-10">
+  <link rel="stylesheet" href="v3-projects.css?v=20260811-11">
 </head>
 <body>
   <header class="topbar">
@@ -36,6 +36,7 @@
     <section class="workspace" id="planner">
       <div class="project-toolbar" aria-label="프로젝트 관리">
         <div class="current-project"><strong id="currentProjectName" hidden>저장되지 않음</strong><small id="saveState" class="save-state">저장되지 않음</small></div>
+        <div class="safety-notice" role="note"><strong>작업 검토용 베타</strong><span>실제 적재 전 화물 강도·중량중심·고정재·운송 규정을 현장 전문가가 검증해야 합니다.</span></div>
         <input id="projectName" type="hidden" value="" maxlength="80">
         <button id="newProjectTop" type="button">새 프로젝트</button>
         <button id="openProjects" type="button">저장 목록</button>
@@ -122,7 +123,6 @@
         </div>
 
         <div class="recommendation" id="recommendation" hidden></div>
-        <div class="safety-notice" role="note"><strong>작업 검토용 베타</strong><span>실제 적재 전 화물 강도·중량중심·고정재·운송 규정을 현장 전문가가 검증해야 합니다.</span></div>
         <div class="securing-recommendation" id="securingRecommendation" hidden></div>
 
         <div class="stats" id="stats">

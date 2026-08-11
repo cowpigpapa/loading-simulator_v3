@@ -27,6 +27,12 @@ test('admin controls stay hidden before login',async({page})=>{
   await expect(page.locator('#adminButton')).toBeHidden();
 });
 
+test('beta safety notice stays in the project toolbar',async({page})=>{
+  await page.goto('/');
+  await expect(page.locator('.project-toolbar .safety-notice')).toContainText('작업 검토용 베타');
+  await expect(page.locator('.result-panel .safety-notice')).toHaveCount(0);
+});
+
 test('guest project saves, reloads, and recalculates automatically',async({page})=>{
   await page.goto('/');
   await page.getByRole('button',{name:'샘플 불러오기'}).click();
