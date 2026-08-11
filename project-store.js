@@ -62,9 +62,9 @@
   }
   async function openAdmin(){
     if(!isAdmin)return;
-    const[{data:access,error:accessError},{data:admins,error:adminError}]=await Promise.all([client.from('user_access').select('email,first_seen_at,last_seen_at,visit_count').order('last_seen_at',{ascending:false}),client.from('admin_users').select('email,created_at').order('created_at')]);
-    if(accessError||adminError){message((accessError||adminError).message,{title:'관리자 통계를 불러오지 못했습니다',tone:'error'});return}
-    const recent=Date.now()-86400000;$('adminUserCount').textContent=access.length.toLocaleString();$('adminVisitCount').textContent=access.reduce((sum,row)=>sum+Number(row.visit_count||0),0).toLocaleString();$('adminRecentCount').textContent=access.filter(row=>new Date(row.last_seen_at).getTime()>=recent).length.toLocaleString();
+    const[{data:access,error:accessError},{data:admins,error:adminError},{data:projectCount,error:projectError}]=await Promise.all([client.from('user_access').select('email,first_seen_at,last_seen_at,visit_count').order('last_seen_at',{ascending:false}),client.from('admin_users').select('email,created_at').order('created_at'),client.rpc('admin_project_count')]);
+    if(accessError||adminError||projectError){message((accessError||adminError||projectError).message,{title:'관리자 통계를 불러오지 못했습니다',tone:'error'});return}
+    const recent=Date.now()-86400000;$('adminUserCount').textContent=access.length.toLocaleString();$('adminProjectCount').textContent=Number(projectCount||0).toLocaleString();$('adminVisitCount').textContent=access.reduce((sum,row)=>sum+Number(row.visit_count||0),0).toLocaleString();$('adminRecentCount').textContent=access.filter(row=>new Date(row.last_seen_at).getTime()>=recent).length.toLocaleString();
     $('adminList').innerHTML=admins.map(row=>`<span>${escapeHtml(row.email)}${row.email===user.email.toLowerCase()?' · 나':`<button type="button" data-revoke-admin="${escapeHtml(row.email)}">해제</button>`}</span>`).join('');
     $('accessList').innerHTML=access.length?access.map(row=>`<tr><td>${escapeHtml(row.email)}</td><td>${formatDate(row.first_seen_at)}</td><td>${formatDate(row.last_seen_at)}</td><td>${Number(row.visit_count).toLocaleString()}</td></tr>`).join(''):'<tr><td class="admin-empty" colspan="4">아직 로그인 사용자 접속 기록이 없습니다.</td></tr>';
     $('adminList').querySelectorAll('[data-revoke-admin]').forEach(button=>button.onclick=()=>revokeAdmin(button.dataset.revokeAdmin));if(!$('adminDialog').open)$('adminDialog').showModal();

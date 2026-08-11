@@ -182,7 +182,7 @@
     <span class="result-kicker">ADMIN DASHBOARD</span>
     <h2>접속 통계와 권한 관리</h2>
     <p>로그인한 사용자의 접속 현황을 확인하고 이메일 기준으로 관리자 권한을 부여합니다.</p>
-    <div class="admin-metrics"><article><span>로그인 사용자</span><strong id="adminUserCount">—</strong></article><article><span>누적 로그인 접속</span><strong id="adminVisitCount">—</strong></article><article><span>최근 24시간</span><strong id="adminRecentCount">—</strong></article></div>
+    <div class="admin-metrics"><article><span>로그인 사용자</span><strong id="adminUserCount">—</strong></article><article><span>저장된 프로젝트</span><strong id="adminProjectCount">—</strong></article><article><span>누적 로그인 접속</span><strong id="adminVisitCount">—</strong></article><article><span>최근 24시간</span><strong id="adminRecentCount">—</strong></article></div>
     <section class="admin-section"><div><h3>관리자 권한</h3><small>등록된 이메일은 매직링크 로그인 후 관리자 메뉴를 사용할 수 있습니다.</small></div><div class="admin-add"><input id="adminEmail" type="email" placeholder="name@company.com" aria-label="관리자 이메일"><button id="grantAdmin" class="dialog-primary" type="button">권한 추가</button></div><div id="adminList" class="admin-list"></div></section>
     <section class="admin-section"><div><h3>로그인 사용자 접속 내역</h3><small>비로그인 방문자는 개인정보 없이 하단의 오늘·누적 방문 수에만 포함됩니다.</small></div><div class="admin-table-wrap"><table><thead><tr><th>이메일</th><th>최초 접속</th><th>최근 접속</th><th>횟수</th></tr></thead><tbody id="accessList"></tbody></table></div></section>
   </dialog>
@@ -225,6 +225,6 @@
   <script src="supabase-config.js"></script>
   <script src="project-model.js?v=20260811-3"></script>
   <script src="app.js?v=20260811-13"></script>
-  <script src="project-store.js?v=20260811-9"></script>
+  <script src="project-store.js?v=20260811-10"></script>
 </body>
 </html>
