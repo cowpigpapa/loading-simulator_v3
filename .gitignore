@@ -6,3 +6,4 @@ qa.mjs
 build-sample-upload.mjs
 loadspace-preview.png
 *.inspect.ndjson
+.vercel
