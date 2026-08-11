@@ -26,6 +26,7 @@ function init(){
   bindEvents(); updateContainerSpec(); renderProducts(); resizeCanvas();
 }
 function bindEvents(){
+  $('guideButton').onclick=()=>$('guideDialog').showModal();
   $('policyButton').onclick=()=>$('policyDialog').showModal();
   document.querySelectorAll('.tab').forEach(tab=>tab.onclick=()=>switchTab(tab.dataset.tab));
   $('addProduct').onclick=addProduct;

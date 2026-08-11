@@ -7,6 +7,13 @@ test('algorithm policy opens inside the app',async({page})=>{
   await expect(page.locator('#policyDialog')).toHaveAttribute('open','');
 });
 
+test('user guide opens inside the app',async({page})=>{
+  await page.goto('/');
+  await page.getByRole('button',{name:'사용 가이드'}).click();
+  await expect(page.locator('#guideDialog')).toHaveAttribute('open','');
+  await expect(page.getByRole('heading',{name:'LoadWise 사용 가이드'})).toBeVisible();
+});
+
 test('guest project saves, reloads, and recalculates automatically',async({page})=>{
   await page.goto('/');
   await page.getByRole('button',{name:'샘플 불러오기'}).click();
