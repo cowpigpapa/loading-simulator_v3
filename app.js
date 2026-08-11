@@ -48,6 +48,7 @@ function bindEvents(){
   $('downloadTemplate').onclick=downloadTemplate;
   $('exportPlan').onclick=exportPlan;
   $('toggleSequence').onclick=toggleSequence;
+  $('toggleProducts').onclick=toggleProductList;
   $('viewIso').onclick=()=>setView('iso'); $('viewTop').onclick=()=>setView('top');
   $('toggleDunnage').onclick=()=>toggleSecuringVisibility('dunnage');
   $('toggleAirbags').onclick=()=>toggleSecuringVisibility('airbags');
@@ -176,7 +177,8 @@ function updateResults(){
   $('sequenceEmpty').style.display=r.placed.length?'none':'block';$('sequenceEmpty').textContent=r.placed.length?'':'적재 가능한 화물이 없습니다.';$('sequenceList').innerHTML=groups.map((p,i)=>`<li><span class="num">${String(i+1).padStart(2,'0')}</span><span class="dot" style="background:${p.color};border-radius:${p.shape==='cylinder'?'50%':'2px'}"></span><div><strong>${esc(p.name)} × ${p.count} · ${p.shape==='cylinder'?'원통형':'박스형'}</strong><br><small>문에서 ${(p.x/1000).toFixed(2)}m 안쪽 · 바닥에서 ${(p.z/1000).toFixed(2)}m 높이</small></div><small>${p.l}×${p.w}×${p.h}</small></li>`).join('');const blocked=shipment?.unallocated.length>0;$('exportPlan').disabled=blocked;$('exportPlan').title=blocked?`미배치 화물 ${shipment.unallocated.length}개를 해결한 후 내보낼 수 있습니다.`:'';
   $('playback').style.display='flex';$('stepRange').max=r.placed.length;$('totalSteps').textContent=r.placed.length;setStep(r.placed.length);renderRecommendation();renderSecuringRecommendation();requestAnimationFrame(syncSequenceHeight);
 }
-function toggleSequence(){const plan=document.querySelector('.loading-plan'),expanded=plan.classList.toggle('expanded');$('toggleSequence').textContent=expanded?'접기':'전체 보기';if(!expanded)requestAnimationFrame(syncSequenceHeight)}
+function toggleProductList(){const card=document.querySelector('.product-list-card'),expanded=card.classList.toggle('expanded'),button=$('toggleProducts');button.textContent=expanded?'접기':'펼치기';button.setAttribute('aria-expanded',expanded)}
+function toggleSequence(){const plan=document.querySelector('.loading-plan'),expanded=plan.classList.toggle('expanded'),button=$('toggleSequence');button.textContent=expanded?'접기':'펼치기';button.setAttribute('aria-expanded',expanded);if(!expanded)requestAnimationFrame(syncSequenceHeight)}
 function syncSequenceHeight(){const plan=document.querySelector('.loading-plan'),list=$('sequenceList'),panel=document.querySelector('.control-panel');if(!plan||!list||!panel||plan.classList.contains('expanded'))return;const available=Math.max(220,Math.round(panel.getBoundingClientRect().bottom-list.getBoundingClientRect().top-24));list.style.setProperty('--sequence-max-height',`${available}px`)}
 function renderContainerTabs(){const el=$('containerTabs');if(!shipment){el.style.display='none';return}const total=shipment.containers.length;el.style.display='flex';el.innerHTML=`<button class="nav-arrow" id="prevContainer" ${activeContainer===0?'disabled':''} aria-label="이전 컨테이너">‹</button><span class="page-label">${activeContainer+1} / ${total}</span><button class="nav-arrow" id="nextContainerArrow" ${activeContainer===total-1?'disabled':''} aria-label="다음 컨테이너">›</button>`;$('prevContainer').onclick=()=>selectContainer(activeContainer-1);$('nextContainerArrow').onclick=()=>selectContainer(activeContainer+1)}
 function selectContainer(index){if(!shipment||!shipment.containers[index])return;activeContainer=index;result=shipment.containers[index];visibleStep=result.placed.length;stopPlayback();updateResults();resizeCanvas();draw()}
