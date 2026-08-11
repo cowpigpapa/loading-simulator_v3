@@ -49,7 +49,7 @@
     try{if(user){const{error}=await client.from('projects').delete().eq('id',id);if(error)throw error}else writeLocal(readLocal().filter(x=>x.id!==id));if(currentId===id){currentId=null;showCurrent();dirty=true;state('저장되지 않음','dirty')}await openList()}
     catch(error){alert(`삭제하지 못했습니다. ${error.message}`)}
   }
-  function fresh(force=false){if(!force&&dirty&&!confirm('저장하지 않은 변경사항을 지우고 새 프로젝트를 시작할까요?'))return;suppressDirty=true;window.loadwiseProject.reset();suppressDirty=false;currentId=null;suggestedName='';showCurrent();$('projectsDialog').close();dirty=false;state('저장되지 않음')}
+  function fresh(force=false){if(!force&&dirty&&!confirm('저장하지 않은 변경사항을 지우고 새 프로젝트를 시작할까요?'))return;location.reload()}
   async function emailLogin(){if(!configured)return;const email=$('loginEmail').value.trim();if(!email)return alert('이메일을 입력해 주세요.');const{error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});$('authMessage').textContent=error?error.message:'이메일로 로그인 링크를 보냈습니다.'}
   async function logout(){if(dirty&&!confirm('로그아웃할까요? 저장하지 않은 변경사항은 사라질 수 있습니다.'))return;await client?.auth.signOut()}
   function renderAccount(){const signed=Boolean(user),button=$('accountButton');button.hidden=!configured;button.dataset.state=signed?'signed-in':'signed-out';button.textContent=signed?'로그아웃':'로그인';$('localNotice').hidden=signed;$('localNotice').textContent=configured?'로그인 전에는 이 브라우저에만 저장됩니다.':'이 브라우저에만 저장됩니다.';if(signed&&$('accountDialog').open)$('accountDialog').close()}
