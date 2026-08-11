@@ -7,7 +7,7 @@
 - v3 저장소: https://github.com/cowpigpapa/loading-simulator_v3
 - 운영 중인 v2: https://cowpigpapa.github.io/loading-simulator_v2/
 - 제품 요구사항: [LOADING-SIMULATOR-PRD.md](LOADING-SIMULATOR-PRD.md)
-- 알고리즘 정책과 한계: [ALGORITHM-POLICY.md](ALGORITHM-POLICY.md)
+- 상단 `알고리즘 정책` 팝업 및 원문: [ALGORITHM-POLICY.md](ALGORITHM-POLICY.md)
 
 ## 주요 기능
 

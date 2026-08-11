@@ -26,6 +26,7 @@ function init(){
   bindEvents(); updateContainerSpec(); renderProducts(); resizeCanvas(); trackVisitors();
 }
 function bindEvents(){
+  $('policyButton').onclick=()=>$('policyDialog').showModal();
   document.querySelectorAll('.tab').forEach(tab=>tab.onclick=()=>switchTab(tab.dataset.tab));
   $('addProduct').onclick=addProduct;
   $('loadDemo').onclick=loadDemo;
