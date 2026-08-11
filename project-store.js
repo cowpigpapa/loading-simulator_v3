@@ -62,15 +62,16 @@
   }
   async function openAdmin(){
     if(!isAdmin)return;
-    const[{data:access,error:accessError},{data:admins,error:adminError},{data:projectCount,error:projectError}]=await Promise.all([client.from('user_access').select('email,first_seen_at,last_seen_at,visit_count').order('last_seen_at',{ascending:false}),client.from('admin_users').select('email,created_at').order('created_at'),client.rpc('admin_project_count')]);
-    if(accessError||adminError||projectError){message((accessError||adminError||projectError).message,{title:'관리자 통계를 불러오지 못했습니다',tone:'error'});return}
-    const recent=Date.now()-86400000;$('adminUserCount').textContent=access.length.toLocaleString();$('adminProjectCount').textContent=Number(projectCount||0).toLocaleString();$('adminVisitCount').textContent=access.reduce((sum,row)=>sum+Number(row.visit_count||0),0).toLocaleString();$('adminRecentCount').textContent=access.filter(row=>new Date(row.last_seen_at).getTime()>=recent).length.toLocaleString();
+    const[{data:access,error:accessError},{data:admins,error:adminError}]=await Promise.all([client.rpc('admin_user_stats'),client.from('admin_users').select('email,created_at').order('created_at')]);
+    if(accessError||adminError){message((accessError||adminError).message,{title:'관리자 통계를 불러오지 못했습니다',tone:'error'});return}
+    const recent=Date.now()-86400000;$('adminUserCount').textContent=access.length.toLocaleString();$('adminProjectCount').textContent=access.reduce((sum,row)=>sum+Number(row.project_count||0),0).toLocaleString();$('adminVisitCount').textContent=access.reduce((sum,row)=>sum+Number(row.visit_count||0),0).toLocaleString();$('adminRecentCount').textContent=access.filter(row=>new Date(row.last_seen_at).getTime()>=recent).length.toLocaleString();
     $('adminList').innerHTML=admins.map(row=>`<span>${escapeHtml(row.email)}${row.email===user.email.toLowerCase()?' · 나':`<button type="button" data-revoke-admin="${escapeHtml(row.email)}">해제</button>`}</span>`).join('');
-    $('accessList').innerHTML=access.length?access.map(row=>`<tr><td>${escapeHtml(row.email)}</td><td>${formatDate(row.first_seen_at)}</td><td>${formatDate(row.last_seen_at)}</td><td>${Number(row.visit_count).toLocaleString()}</td></tr>`).join(''):'<tr><td class="admin-empty" colspan="4">아직 로그인 사용자 접속 기록이 없습니다.</td></tr>';
+    $('accessList').innerHTML=access.length?access.map(row=>`<tr><td>${escapeHtml(row.email)}</td><td>${Number(row.project_count||0).toLocaleString()}</td><td>${Number(row.simulation_count||0).toLocaleString()}</td><td>${formatDate(row.first_seen_at)}</td><td>${formatDate(row.last_seen_at)}</td><td>${Number(row.visit_count).toLocaleString()}</td></tr>`).join(''):'<tr><td class="admin-empty" colspan="6">아직 로그인 사용자 접속 기록이 없습니다.</td></tr>';
     $('adminList').querySelectorAll('[data-revoke-admin]').forEach(button=>button.onclick=()=>revokeAdmin(button.dataset.revokeAdmin));if(!$('adminDialog').open)$('adminDialog').showModal();
   }
   async function grantAdmin(){const email=$('adminEmail').value.trim().toLowerCase();if(!email||!$('adminEmail').checkValidity())return message('관리자로 등록할 올바른 이메일 주소를 입력해 주세요.',{title:'이메일을 확인해 주세요',tone:'warning'});const{error}=await client.rpc('grant_admin',{p_email:email});if(error)return message(error.message,{title:'관리자 권한을 추가하지 못했습니다',tone:'error'});$('adminEmail').value='';await openAdmin();message(`${email}에 관리자 권한을 부여했습니다.`,{title:'관리자 권한 추가 완료',tone:'success'})}
   async function revokeAdmin(email){if(!await message(`${email}의 관리자 권한을 해제합니다.`,{title:'관리자 권한을 해제할까요?',tone:'danger',confirmAction:true,actionLabel:'권한 해제'}))return;const{error}=await client.rpc('revoke_admin',{p_email:email});if(error)return message(error.message,{title:'관리자 권한을 해제하지 못했습니다',tone:'error'});await openAdmin()}
+  async function recordSimulation(){if(!user)return;const{error}=await client.rpc('record_simulation');if(error)console.error(error)}
   function renderAccount(){const signed=Boolean(user),button=$('accountButton'),identity=$('accountIdentity');button.hidden=!configured;$('adminButton').hidden=!isAdmin;button.dataset.state=signed?'signed-in':'signed-out';button.textContent=signed?'로그아웃':'로그인';identity.hidden=!signed;identity.textContent=signed?`${isAdmin?'관리자':'클라우드'} · ${user.email}`:'';$('localNotice').hidden=signed;$('localNotice').textContent=configured?'로그인 전에는 이 브라우저에만 저장됩니다.':'이 브라우저에만 저장됩니다.';if(signed&&$('accountDialog').open)$('accountDialog').close()}
   function formatDate(value){const date=new Date(value);return Number.isNaN(date.getTime())?'저장 날짜 없음':date.toLocaleString('ko-KR')}
   function escapeHtml(value){return String(value??'').replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]))}
@@ -79,5 +80,5 @@
     if(client){const{data}=await client.auth.getSession();user=data.session?.user||null;await syncAdminAccess();client.auth.onAuthStateChange((_event,session)=>{const next=session?.user||null;if(user?.id&&user.id!==next?.id){fresh(true);return}user=next;syncAdminAccess()})}
     renderAccount();showCurrent();state('저장되지 않음');trackVisitors();
   }
-  window.loadwiseStorage={markDirty,suggestName};window.addEventListener('DOMContentLoaded',init);
+  window.loadwiseStorage={markDirty,suggestName};window.addEventListener('loadwise:simulation-complete',recordSimulation);window.addEventListener('DOMContentLoaded',init);
 })();
