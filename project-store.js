@@ -17,10 +17,9 @@
   function snapshot(){return window.loadwiseProject.snapshot()}
   function record(name,id=currentId){return{id:id||crypto.randomUUID(),name,payload:snapshot(),updated_at:new Date().toISOString()}}
   async function list(){if(user){const{data,error}=await client.from('projects').select('id,name,payload,updated_at').order('updated_at',{ascending:false});if(error)throw error;return data}return readLocal().sort((a,b)=>String(b.updated_at||'').localeCompare(String(a.updated_at||'')))}
-  function requireLogin(){if(configured&&!user){$('accountDialog').showModal();return true}return false}
   function showSaveDialog(name){$('saveNameInput').value=name;$('saveDialog').showModal();setTimeout(()=>$('saveNameInput').select(),0)}
-  function requestSave(){if(requireLogin()||saving)return;saveAsNew=false;if(currentId){if(confirm('현재 프로젝트에 저장할까요?'))save($('projectName').value);return}saveAsNew=true;showSaveDialog(suggestedName||`적재 계획 ${new Date().toLocaleDateString('ko-KR')}`)}
-  function requestSaveAs(){if(requireLogin()||saving)return;saveAsNew=true;showSaveDialog(currentId?`${$('projectName').value} 복사본`:suggestedName||`적재 계획 ${new Date().toLocaleDateString('ko-KR')}`)}
+  function requestSave(){if(saving)return;saveAsNew=false;if(currentId){if(confirm('현재 프로젝트에 저장할까요?'))save($('projectName').value);return}saveAsNew=true;showSaveDialog(suggestedName||`적재 계획 ${new Date().toLocaleDateString('ko-KR')}`)}
+  function requestSaveAs(){if(saving)return;saveAsNew=true;showSaveDialog(currentId?`${$('projectName').value} 복사본`:suggestedName||`적재 계획 ${new Date().toLocaleDateString('ko-KR')}`)}
   async function save(name){
     name=name.trim();if(!name)return alert('저장 이름을 입력해 주세요.');if(name.length>80)return alert('저장 이름은 80자 이내로 입력해 주세요.');
     saving=true;$('saveProject').disabled=true;$('saveAsProject').disabled=true;$('confirmSave').disabled=true;state('저장 중…');
@@ -32,7 +31,6 @@
     finally{saving=false;saveAsNew=false;$('saveProject').disabled=false;$('saveAsProject').disabled=false;$('confirmSave').disabled=false}
   }
   async function openList(){
-    if(requireLogin())return;
     try{
       const rows=await list(),el=$('projectList');
       $('projectsDescription').textContent=user?'내 계정에 저장된 적재 프로젝트입니다.':'이 브라우저에 저장된 적재 프로젝트입니다.';
@@ -53,12 +51,12 @@
   }
   function fresh(force=false){if(!force&&dirty&&!confirm('저장하지 않은 변경사항을 지우고 새 프로젝트를 시작할까요?'))return;suppressDirty=true;window.loadwiseProject.reset();suppressDirty=false;currentId=null;suggestedName='';showCurrent();$('projectsDialog').close();dirty=false;state('저장되지 않음')}
   async function emailLogin(){if(!configured)return;const email=$('loginEmail').value.trim();if(!email)return alert('이메일을 입력해 주세요.');const{error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});$('authMessage').textContent=error?error.message:'이메일로 로그인 링크를 보냈습니다.'}
-  async function logout(){await client?.auth.signOut()}
-  function renderAccount(){const signed=Boolean(user);$('accountButton').hidden=!configured;$('localNotice').hidden=configured;$('signedOutPanel').hidden=signed;$('signedInPanel').hidden=!signed;$('accountButton').textContent=signed?'내 계정':'로그인';$('accountEmail').textContent=user?.email||'로그인 사용자'}
+  async function logout(){if(dirty&&!confirm('로그아웃할까요? 저장하지 않은 변경사항은 사라질 수 있습니다.'))return;await client?.auth.signOut()}
+  function renderAccount(){const signed=Boolean(user),button=$('accountButton');button.hidden=!configured;button.dataset.state=signed?'signed-in':'signed-out';button.textContent=signed?'로그아웃':'로그인';$('localNotice').hidden=signed;$('localNotice').textContent=configured?'로그인 전에는 이 브라우저에만 저장됩니다.':'이 브라우저에만 저장됩니다.';if(signed&&$('accountDialog').open)$('accountDialog').close()}
   function formatDate(value){const date=new Date(value);return Number.isNaN(date.getTime())?'저장 날짜 없음':date.toLocaleString('ko-KR')}
   function escapeHtml(value){return String(value??'').replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]))}
   async function init(){
-    $('saveProject').onclick=requestSave;$('saveAsProject').onclick=requestSaveAs;$('confirmSave').onclick=()=>save($('saveNameInput').value);$('saveNameInput').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();save(e.currentTarget.value)}};$('openProjects').onclick=openList;$('newProjectTop').onclick=()=>fresh();$('accountButton').onclick=()=>$('accountDialog').showModal();$('emailLogin').onclick=emailLogin;$('logoutButton').onclick=logout;$('containerType').addEventListener('change',markDirty);$('optimization').addEventListener('change',markDirty);
+    $('saveProject').onclick=requestSave;$('saveAsProject').onclick=requestSaveAs;$('confirmSave').onclick=()=>save($('saveNameInput').value);$('saveNameInput').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();save(e.currentTarget.value)}};$('openProjects').onclick=openList;$('newProjectTop').onclick=()=>fresh();$('accountButton').onclick=()=>user?logout():$('accountDialog').showModal();$('emailLogin').onclick=emailLogin;$('containerType').addEventListener('change',markDirty);$('optimization').addEventListener('change',markDirty);
     if(client){const{data}=await client.auth.getSession();user=data.session?.user||null;client.auth.onAuthStateChange((_event,session)=>{const next=session?.user||null;if(user?.id&&user.id!==next?.id)fresh(true);user=next;renderAccount()})}
     renderAccount();showCurrent();state('저장되지 않음');
   }

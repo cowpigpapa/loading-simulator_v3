@@ -28,7 +28,7 @@
       <a class="active" href="#planner">적재 플래너</a>
       <a href="#guide">사용 가이드</a>
     </nav>
-    <div class="account-actions"><span id="localNotice" class="local-notice">이 브라우저에만 저장</span><button class="account-button" id="accountButton" hidden>로그인</button></div>
+    <div class="account-actions"><span id="localNotice" class="local-notice">로그인 전에는 이 브라우저에만 저장됩니다.</span><button class="account-button" id="accountButton" hidden>로그인</button></div>
   </header>
 
   <main>
@@ -147,8 +147,7 @@
 
   <dialog id="accountDialog" class="project-dialog">
     <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
-    <div id="signedOutPanel"><span class="result-kicker">CLOUD SAVE</span><h2>LoadWise 로그인</h2><p>로그인하면 프로젝트를 안전하게 저장하고 다른 기기에서 이어서 작업할 수 있습니다.</p><label>이메일<input id="loginEmail" type="email" placeholder="name@company.com" autocomplete="email"></label><button id="emailLogin" class="dialog-primary" type="button">이메일 로그인 링크 받기</button><small id="authMessage">Supabase 연결 전에는 로컬 테스트 저장으로 동작합니다.</small></div>
-    <div id="signedInPanel" hidden><span class="result-kicker">ACCOUNT</span><h2 id="accountEmail">로그인 사용자</h2><button id="logoutButton" type="button">로그아웃</button></div>
+    <div id="signedOutPanel"><span class="result-kicker">CLOUD SAVE</span><h2>LoadWise 로그인</h2><p>로그인하면 프로젝트를 계정에 저장하고 다른 기기에서 이어서 작업할 수 있습니다.</p><small class="guest-save-note">로그인하지 않아도 현재 브라우저에는 저장할 수 있습니다.</small><label>이메일<input id="loginEmail" type="email" placeholder="name@company.com" autocomplete="email"></label><button id="emailLogin" class="dialog-primary" type="button">이메일 로그인 링크 받기</button><small id="authMessage">이메일로 일회용 로그인 링크를 보내드립니다.</small></div>
   </dialog>
 
   <dialog id="projectsDialog" class="project-dialog wide">
@@ -168,6 +167,6 @@
   <script src="supabase-config.js"></script>
   <script src="project-model.js?v=20260811-1"></script>
   <script src="app.js?v=20260811-2"></script>
-  <script src="project-store.js?v=20260811-2"></script>
+  <script src="project-store.js?v=20260811-3"></script>
 </body>
 </html>
