@@ -82,10 +82,10 @@ function renderProducts(){
   window.loadwiseStorage?.markDirty();
 }
 
-function projectSnapshot(){return LoadwiseProjectModel.createSnapshot(products,$('containerType').value,$('optimization').value)}
+function projectSnapshot(){let resultSummary=null;if(shipment){const outcome=shipmentOutcome(shipment);resultSummary={state:outcome.state,loaded:outcome.loaded,total:outcome.total,containerCount:shipment.containers.length,totalWeight:shipment.containers.reduce((sum,load)=>sum+load.totalWeight,0),calculatedAt:new Date().toISOString()}}return LoadwiseProjectModel.createSnapshot(products,$('containerType').value,$('optimization').value,{algorithmVersion:LoadwiseProjectModel.CURRENT_ALGORITHM_VERSION,resultSummary})}
 function applyProjectSnapshot(snapshot){const data=LoadwiseProjectModel.normalizeSnapshot(snapshot);products=data.products.map((p,i)=>({...p,id:Date.now()+i,color:COLORS[i%COLORS.length]}));$('containerType').value=data.containerType;$('optimization').value=data.optimization;result=null;shipment=null;activeContainer=0;visibleStep=0;updateContainerSpec();renderProducts();markSimulationChanged();resizeCanvas();draw()}
 function resetProject(){applyProjectSnapshot({products:[],containerType:'20ft',optimization:'intelligent'})}
-if(typeof window!=='undefined')window.loadwiseProject={snapshot:projectSnapshot,apply:applyProjectSnapshot,reset:resetProject};
+if(typeof window!=='undefined')window.loadwiseProject={algorithmVersion:LoadwiseProjectModel.CURRENT_ALGORITHM_VERSION,snapshot:projectSnapshot,apply:applyProjectSnapshot,reset:resetProject};
 function changeProductQty(index,delta){if(!products[index])return;products[index].qty=Math.max(1,products[index].qty+delta);renderProducts();markSimulationChanged()}
 function setProductQty(index,value){if(!products[index])return;const qty=Math.max(1,Math.floor(Number(value)||1));if(products[index].qty===qty){renderProducts();return}products[index].qty=qty;renderProducts();markSimulationChanged()}
 function markSimulationChanged(){$('simulate').classList.add('needs-update');$('simulate').innerHTML='다시 계산 <b>→</b>';$('recalculateList').classList.add('needs-update');$('recalculateList').innerHTML='다시 계산 <b>→</b>';$('recalculateOptions').classList.add('needs-update');$('recalculateOptions').innerHTML='다시 계산 <b>→</b>'}
