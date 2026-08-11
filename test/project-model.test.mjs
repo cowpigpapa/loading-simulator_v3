@@ -8,14 +8,19 @@ const model=context.LoadwiseProjectModel;
 
 test('manual and file products share one normalized model',()=>{
   const snapshot=model.createSnapshot([{name:'펌프',group:'기계',shape:'box',qty:'2',l:'1000',w:'800',h:'700',weight:'120',source:'excel'}],'40hc','intelligent');
-  assert.deepEqual(JSON.parse(JSON.stringify(snapshot)),{schemaVersion:2,algorithmVersion:'legacy',products:[{name:'펌프',group:'기계',shape:'box',qty:2,l:1000,w:800,h:700,weight:120,rotate:false,fragile:false,source:'excel'}],containerType:'40hc',optimization:'intelligent',resultSummary:null});
+  assert.deepEqual(JSON.parse(JSON.stringify(snapshot)),{schemaVersion:3,algorithmVersion:'legacy',products:[{name:'펌프',group:'기계',shape:'box',qty:2,l:1000,w:800,h:700,weight:120,rotate:false,fragile:false,source:'excel'}],containerType:'40hc',optimization:'intelligent',resultSummary:null,fieldResult:null});
 });
 
 test('legacy snapshots migrate and current metadata is preserved',()=>{
   const legacy=model.normalizeSnapshot({schemaVersion:1,products:[],containerType:'40ft',optimization:'sequence'});
-  assert.equal(legacy.schemaVersion,2);assert.equal(legacy.algorithmVersion,'legacy');assert.equal(legacy.resultSummary,null);
+  assert.equal(legacy.schemaVersion,3);assert.equal(legacy.algorithmVersion,'legacy');assert.equal(legacy.resultSummary,null);assert.equal(legacy.fieldResult,null);
   const current=model.createSnapshot([],'20ft','intelligent',{algorithmVersion:model.CURRENT_ALGORITHM_VERSION,resultSummary:{state:'complete',loaded:36,total:36,containerCount:1,totalWeight:6692,calculatedAt:'2026-08-11T00:00:00.000Z'}});
   assert.equal(current.algorithmVersion,'extreme-dblf-width-2026.08');assert.equal(current.resultSummary.loaded,36);assert.equal(current.resultSummary.totalWeight,6692);
+});
+
+test('field comparison survives project normalization',()=>{
+  const snapshot=model.createSnapshot([],'20ft','intelligent',{fieldResult:{loaded:35,containers:2,notes:'현장 변경',recordedAt:'2026-08-11T00:00:00.000Z'}});
+  assert.equal(snapshot.fieldResult.loaded,35);assert.equal(snapshot.fieldResult.containers,2);assert.equal(snapshot.fieldResult.notes,'현장 변경');
 });
 
 test('width-first optimization is preserved',()=>{

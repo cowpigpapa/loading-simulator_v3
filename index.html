@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="styles.css?v=20260728-14">
   <link rel="stylesheet" href="layout-fixes.css?v=20260728-1">
   <link rel="stylesheet" href="v2.css?v=20260804-1">
-  <link rel="stylesheet" href="v3-projects.css?v=20260811-14">
+  <link rel="stylesheet" href="v3-projects.css?v=20260811-15">
 </head>
 <body>
   <header class="topbar">
@@ -104,7 +104,7 @@
       <section class="result-panel">
         <div class="result-header">
           <div><span class="result-kicker">LOADING VIEW</span><h2>3D 적재 시뮬레이션</h2></div>
-          <div class="result-tools"><div id="simulationStatus" class="simulation-status" hidden aria-live="polite"></div><div class="securing-visibility" aria-label="3D 고정재 표시"><button id="toggleDunnage" class="active dunnage-toggle" aria-pressed="true"><i></i><span>부목</span><b>ON</b></button><button id="toggleAirbags" class="active airbag-toggle" aria-pressed="true"><i></i><span>에어백</span><b>ON</b></button><button id="toggleBands" class="active band-toggle" aria-pressed="true"><i></i><span>밴드</span><b>ON</b></button></div><div class="view-actions"><button id="viewIso" class="active">3D</button><button id="viewTop">상면</button><button id="resetView" aria-label="보기 초기화">↻</button></div><div class="container-tabs" id="containerTabs" aria-label="컨테이너별 적재 결과"></div></div>
+          <div class="result-tools"><div id="simulationStatus" class="simulation-status" hidden aria-live="polite"></div><div class="securing-visibility" aria-label="3D 고정재 표시"><button id="toggleDunnage" class="active dunnage-toggle" aria-pressed="true"><i></i><span>부목</span><b>ON</b></button><button id="toggleAirbags" class="active airbag-toggle" aria-pressed="true"><i></i><span>에어백</span><b>ON</b></button><button id="toggleBands" class="active band-toggle" aria-pressed="true"><i></i><span>밴드</span><b>ON</b></button></div><div class="view-actions"><button id="viewIso" class="active">3D</button><button id="viewTop">상면</button><button id="viewDoor">문</button><button id="viewSide">측면</button><button id="resetView" aria-label="보기 초기화">↻</button></div><div class="container-tabs" id="containerTabs" aria-label="컨테이너별 적재 결과"></div></div>
         </div>
 
         <div class="canvas-wrap" id="canvasWrap">
@@ -130,12 +130,13 @@
           <div><span>적재 수량</span><strong id="loadedCount">—</strong><small id="loadedDetail">시뮬레이션 전</small></div>
           <div><span>총 적재 중량</span><strong id="totalWeight">—</strong><small id="weightDetail">허용 중량 —</small></div>
         </div>
+        <section class="balance-card" id="balanceCard" hidden><div><span class="result-kicker">WEIGHT BALANCE</span><h3>무게중심과 중량 배분</h3></div><strong id="balanceStatus">—</strong><div class="balance-grid"><span>문쪽 / 안쪽<b id="frontRearBalance">—</b></span><span>좌측 / 우측<b id="leftRightBalance">—</b></span><span>무게중심 위치<b id="cogPosition">—</b></span><span>중심 편차<b id="cogOffset">—</b></span></div><p>화물 중심점의 정적 모멘트 기준입니다. 축하중·바닥 집중하중·운송 중 동하중은 계산하지 않습니다.</p></section>
 
         <div class="recommendation" id="recommendation" hidden></div>
         <details class="collapsible-card securing-card" id="securingPanel" hidden open><summary><div><strong>고정재 권고</strong><span id="securingCount"></span></div><span class="collapse-state collapse-toggle"></span></summary><div class="securing-recommendation" id="securingRecommendation"></div></details>
 
         <div class="loading-plan">
-          <div class="plan-head"><div><span class="result-kicker">LOAD SEQUENCE</span><h2>적재 순서</h2><p class="coordinate-note">위치: 문·좌측·바닥을 기준으로 한 시작점 · 크기: 회전 후 실제 배치 방향</p></div><div class="plan-actions"><button class="collapse-toggle" id="toggleSequence" type="button" aria-expanded="false">펼치기 ▾</button><button id="exportPlan" disabled>Excel 계획 내보내기</button></div></div>
+          <div class="plan-head"><div><span class="result-kicker">LOAD SEQUENCE</span><h2>적재 순서</h2><p class="coordinate-note">위치: 문·좌측·바닥을 기준으로 한 시작점 · 크기: 회전 후 실제 배치 방향</p></div><div class="plan-actions"><button class="collapse-toggle" id="toggleSequence" type="button" aria-expanded="false">펼치기 ▾</button><button id="fieldResultButton" disabled>현장 결과</button><button id="exportPdf" disabled>PDF 작업지시서</button><button id="exportPlan" disabled>Excel 계획</button></div></div>
           <div class="sequence-empty" id="sequenceEmpty">시뮬레이션 결과가 여기에 표시됩니다.</div>
           <ol class="sequence-list" id="sequenceList"></ol>
         </div>
@@ -217,14 +218,17 @@
     <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
     <span class="result-kicker">SAVE</span><h2>저장 이름</h2><p>나중에 쉽게 찾을 수 있는 이름을 입력하세요.</p><label>저장 이름<input id="saveNameInput" maxlength="80" placeholder="예: 부산 수출 8월 1차"></label><button id="confirmSave" class="dialog-primary" type="button">이 이름으로 저장</button>
   </dialog>
+  <dialog id="fieldResultDialog" class="project-dialog compact"><button class="dialog-close" type="button" data-close="fieldResultDialog" aria-label="닫기">×</button><span class="result-kicker">FIELD RESULT</span><h2>현장 적재 결과</h2><p>계획과 실제 작업 결과를 비교할 수 있도록 기록합니다.</p><label>실제 적재 수량<input id="fieldLoaded" type="number" min="0" step="1"></label><label>실제 사용 컨테이너 수<input id="fieldContainers" type="number" min="0" step="1"></label><label>현장 메모<input id="fieldNotes" type="text" maxlength="240" placeholder="변경 사유, 파손, 추가 고정재 등"></label><div class="message-actions"><button type="button" data-close="fieldResultDialog">취소</button><button class="dialog-primary" id="saveFieldResult" type="button">기록 저장</button></div></dialog>
+  <section id="printReport" class="print-report" aria-hidden="true"></section>
 
   <footer><span>LoadWise</span><p>Container loading intelligence for better logistics.</p><div class="visitor-count" aria-label="방문자 수"><span>오늘 <b id="todayVisitors">—</b></span><span>누적 <b id="totalVisitors">—</b></span></div><small>© 2026 LoadWise v3</small></footer>
   <script src="vendor/xlsx.full.min.js?v=0.18.5"></script>
   <script src="vendor/three.min.js?v=0.160.0"></script>
   <script src="vendor/supabase.js?v=2.112.2"></script>
   <script src="supabase-config.js"></script>
-  <script src="project-model.js?v=20260811-3"></script>
-  <script src="app.js?v=20260811-14"></script>
+  <script src="project-model.js?v=20260811-4"></script>
+  <script src="load-insights.js?v=20260811-1"></script>
+  <script src="app.js?v=20260811-15"></script>
   <script src="project-store.js?v=20260811-11"></script>
 </body>
 </html>

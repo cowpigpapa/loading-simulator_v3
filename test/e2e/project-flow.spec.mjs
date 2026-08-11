@@ -61,3 +61,10 @@ test('guest project saves, reloads, and recalculates automatically',async({page}
   await expect(page.locator('#loadedCount')).toHaveText('36개');
   await expect(page.locator('#simulationStatus')).toContainText('적재 완료');
 });
+
+test('weight balance, view presets, field comparison and PDF report work together',async({page})=>{
+  await page.addInitScript(()=>{window.print=()=>{window.__printed=true}});await page.goto('/');await page.getByRole('button',{name:'샘플 불러오기'}).click();await expect(page.locator('#balanceCard')).toBeVisible();await expect(page.locator('#frontRearBalance')).not.toHaveText('—');
+  for(const name of ['문','측면','상면','3D']){await page.getByRole('button',{name,exact:true}).click();await expect(page.getByRole('button',{name,exact:true})).toHaveClass(/active/)}
+  await page.locator('#fieldResultButton').click();await page.getByLabel('실제 적재 수량').fill('35');await page.getByLabel('실제 사용 컨테이너 수').fill('1');await page.getByLabel('현장 메모').fill('현장 검증 완료');await page.locator('#saveFieldResult').click();await page.locator('#messageConfirm').click();
+  expect(await page.evaluate(()=>window.loadwiseProject.snapshot().fieldResult.loaded)).toBe(35);await page.locator('#exportPdf').click();await expect.poll(()=>page.evaluate(()=>window.__printed)).toBe(true);await expect(page.locator('#printReport')).toContainText('계획 대비 현장 결과');
+});

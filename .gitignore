@@ -10,3 +10,4 @@ loadspace-preview.png
 supabase/.temp/
 test-results/
 playwright-report/
+tmp/
