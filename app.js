@@ -23,7 +23,7 @@ const $ = id => document.getElementById(id);
 
 function init(){
   $('containerType').innerHTML = Object.entries(CONTAINERS).map(([k,c])=>`<option value="${k}">${c.name}</option>`).join('');
-  bindEvents(); updateContainerSpec(); renderProducts(); resizeCanvas(); trackVisitors();
+  bindEvents(); updateContainerSpec(); renderProducts(); resizeCanvas();
 }
 function bindEvents(){
   $('policyButton').onclick=()=>$('policyDialog').showModal();
@@ -263,5 +263,4 @@ function exportPlan(){
   XLSX.writeFile(wb,'loadspace-loading-plan.xlsx');
 }
 function csvCell(v){v=String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}function download(name,text){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([text],{type:'text/csv;charset=utf-8'}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-async function trackVisitors(){const todayEl=$('todayVisitors'),totalEl=$('totalVisitors');if(location.hostname!=='cowpigpapa.github.io'){todayEl.textContent='미리보기';totalEl.textContent='미리보기';return}const namespace='cowpigpapa-loading-simulator',date=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Seoul'}).format(new Date()),base=`https://api.counterapi.dev/v1/${namespace}`,request=async(name,increment)=>{const response=await fetch(`${base}/${name}/${increment?'up':''}`,{cache:'no-store'});if(!response.ok)throw new Error('counter unavailable');const data=await response.json();return Number(data.count??data.value??0)};try{const totalKey='loadspace-total-visitor-counted',dailyKey=`loadspace-daily-${date}`,incrementTotal=!localStorage.getItem(totalKey),incrementDaily=!localStorage.getItem(dailyKey),[today,total]=await Promise.all([request(`visitors-${date}`,incrementDaily),request('visitors-total',incrementTotal)]);if(incrementTotal)localStorage.setItem(totalKey,'1');if(incrementDaily)localStorage.setItem(dailyKey,'1');todayEl.textContent=today.toLocaleString();totalEl.textContent=total.toLocaleString()}catch(error){todayEl.textContent='—';totalEl.textContent='—'}}
 if(typeof document!=='undefined')init();

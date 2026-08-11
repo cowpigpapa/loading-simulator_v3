@@ -51,6 +51,7 @@
   }
   function fresh(force=false){if(!force&&dirty&&!confirm('저장하지 않은 변경사항을 지우고 새 프로젝트를 시작할까요?'))return;location.reload()}
   async function emailLogin(){if(!configured)return;const email=$('loginEmail').value.trim();if(!email)return alert('이메일을 입력해 주세요.');const{error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});$('authMessage').textContent=error?error.message:'이메일로 로그인 링크를 보냈습니다.'}
+  async function trackVisitors(){const todayEl=$('todayVisitors'),totalEl=$('totalVisitors');if(!client){todayEl.textContent='—';totalEl.textContent='—';return}const parts=Object.fromEntries(new Intl.DateTimeFormat('en',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).map(x=>[x.type,x.value])),date=`${parts.year}-${parts.month}-${parts.day}`,request=async(p_counter_key,should_increment)=>{const{data,error}=await client.rpc('increment_visitor',{p_counter_key,should_increment});if(error)throw error;return Number(data)};try{const totalKey='loadwise-v3-total-visitor-counted',dailyKey=`loadwise-v3-daily-${date}`,incrementTotal=!localStorage.getItem(totalKey),incrementDaily=!localStorage.getItem(dailyKey),[today,total]=await Promise.all([request(`visitors-${date}`,incrementDaily),request('visitors-total',incrementTotal)]);if(incrementTotal)localStorage.setItem(totalKey,'1');if(incrementDaily)localStorage.setItem(dailyKey,'1');todayEl.textContent=today.toLocaleString();totalEl.textContent=total.toLocaleString()}catch(error){console.error(error);todayEl.textContent='—';totalEl.textContent='—'}}
   async function logout(){if(dirty&&!confirm('로그아웃할까요? 저장하지 않은 변경사항은 사라질 수 있습니다.'))return;await client?.auth.signOut()}
   function renderAccount(){const signed=Boolean(user),button=$('accountButton');button.hidden=!configured;button.dataset.state=signed?'signed-in':'signed-out';button.textContent=signed?'로그아웃':'로그인';$('localNotice').hidden=signed;$('localNotice').textContent=configured?'로그인 전에는 이 브라우저에만 저장됩니다.':'이 브라우저에만 저장됩니다.';if(signed&&$('accountDialog').open)$('accountDialog').close()}
   function formatDate(value){const date=new Date(value);return Number.isNaN(date.getTime())?'저장 날짜 없음':date.toLocaleString('ko-KR')}
@@ -58,7 +59,7 @@
   async function init(){
     $('saveProject').onclick=requestSave;$('saveAsProject').onclick=requestSaveAs;$('confirmSave').onclick=()=>save($('saveNameInput').value);$('saveNameInput').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();save(e.currentTarget.value)}};$('openProjects').onclick=openList;$('newProjectTop').onclick=()=>fresh();$('accountButton').onclick=()=>user?logout():$('accountDialog').showModal();$('emailLogin').onclick=emailLogin;$('containerType').addEventListener('change',markDirty);$('optimization').addEventListener('change',markDirty);
     if(client){const{data}=await client.auth.getSession();user=data.session?.user||null;client.auth.onAuthStateChange((_event,session)=>{const next=session?.user||null;if(user?.id&&user.id!==next?.id)fresh(true);user=next;renderAccount()})}
-    renderAccount();showCurrent();state('저장되지 않음');
+    renderAccount();showCurrent();state('저장되지 않음');trackVisitors();
   }
   window.loadwiseStorage={markDirty,suggestName};window.addEventListener('DOMContentLoaded',init);
 })();
