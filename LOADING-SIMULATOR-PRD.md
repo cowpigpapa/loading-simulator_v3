@@ -2,7 +2,9 @@
 
 - 문서 버전: 3.0
 - 갱신일: 2026-08-11
-- 제품 단계: 로컬 개발·검증
+- 제품 단계: Vercel 공개 베타
+- v3 서비스: https://loadwise-v3.vercel.app/
+- v3 저장소: https://github.com/cowpigpapa/loading-simulator_v3
 - 운영 중인 v2: https://cowpigpapa.github.io/loading-simulator_v2/
 
 ## 1. 제품 정의
