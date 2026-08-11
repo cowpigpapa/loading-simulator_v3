@@ -1,10 +1,10 @@
-import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { access, cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist/client/vendor", { recursive: true });
 await mkdir("dist/server", { recursive: true });
 
-for (const file of ["index.html", "styles.css", "layout-fixes.css", "v2.css", "v3-projects.css", "app.js", "project-model.js", "project-store.js"]) {
+for (const file of ["index.html", "styles.css", "layout-fixes.css", "v2.css", "v3-projects.css", "app.js", "project-model.js", "project-store.js", "load-insights.js"]) {
   await cp(file, `dist/client/${file}`);
 }
 await cp("vendor/three.min.js", "dist/client/vendor/three.min.js");
@@ -20,4 +20,5 @@ await writeFile("dist/server/index.js", worker);
 
 const html = await readFile("dist/client/index.html", "utf8");
 if (!html.includes("LoadWise v3")) throw new Error("v3 metadata missing");
+for(const [,src] of html.matchAll(/<script[^>]+src="([^"]+)"/g))if(!/^https?:/.test(src))await access(`dist/client/${src.split('?')[0]}`);
 console.log("LoadWise v3 build complete");
