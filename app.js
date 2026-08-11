@@ -10,7 +10,7 @@ let result = null;
 let shipment = null;
 let fieldResult = null;
 let activeContainer = 0;
-let camera = { yaw:-0.63, pitch:0.42, zoom:1 };
+let camera = { yaw:-2.51, pitch:0.42, zoom:1 };
 let viewMode = 'iso';
 let visibleStep = 0;
 let playTimer = null;
@@ -58,7 +58,7 @@ function bindEvents(){
   $('toggleDunnage').onclick=()=>toggleSecuringVisibility('dunnage');
   $('toggleAirbags').onclick=()=>toggleSecuringVisibility('airbags');
   $('toggleBands').onclick=()=>toggleSecuringVisibility('bands');
-  $('resetView').onclick=()=>{camera={yaw:-0.63,pitch:0.42,zoom:1};draw()};
+  $('resetView').onclick=()=>{camera={yaw:-2.51,pitch:0.42,zoom:1};setView('iso')};
   $('prevStep').onclick=()=>setStep(visibleStep-1);
   $('nextStep').onclick=()=>setStep(visibleStep+1);
   $('playSteps').onclick=togglePlayback;
@@ -234,6 +234,7 @@ function drawThree(){
     if(showBands)result.securing.bands.forEach(b=>{const material=new THREE.LineBasicMaterial({color:0xf3c400,linewidth:3}),top=b.z+b.h+24,center=new THREE.Vector3(b.x+b.l/2,top,b.y+b.w/2),points=[];if(/[전후]/.test(b.axes))points.push(new THREE.Vector3(b.x-80,0,b.y+b.w/2),center,center,new THREE.Vector3(b.x+b.l+80,0,b.y+b.w/2));if(/[좌우]/.test(b.axes))points.push(new THREE.Vector3(b.x+b.l/2,0,b.y-80),center,center,new THREE.Vector3(b.x+b.l/2,0,b.y+b.w+80));group.add(new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(points),material))})
   }
   const frameGeo=new THREE.BoxGeometry(c.l,c.h,c.w),frame=new THREE.LineSegments(new THREE.EdgesGeometry(frameGeo),edgeMat);frame.position.set(c.l/2,c.h/2,c.w/2);group.add(frame);
+  const doorGeo=new THREE.BoxGeometry(10,c.h,c.w),doorFrame=new THREE.LineSegments(new THREE.EdgesGeometry(doorGeo),new THREE.LineBasicMaterial({color:0x0066cc,transparent:true,opacity:.95}));doorFrame.position.set(0,c.h/2,c.w/2);group.add(doorFrame);
   const floorGeo=new THREE.PlaneGeometry(c.l,c.w),floor=new THREE.Mesh(floorGeo,new THREE.MeshStandardMaterial({color:0xdfe9e2,transparent:true,opacity:.22,side:THREE.DoubleSide}));floor.rotation.x=-Math.PI/2;floor.position.set(c.l/2,0,c.w/2);group.add(floor);
   const balance=LoadwiseInsights.balance(result);if(balance){const marker=new THREE.Mesh(new THREE.SphereGeometry(55,20,14),new THREE.MeshStandardMaterial({color:balance.level==='safe'?0x16803c:balance.level==='caution'?0xd38b00:0xb42318,emissiveIntensity:.18}));marker.position.set(balance.cog.x,balance.cog.z,balance.cog.y);group.add(marker);group.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(balance.cog.x,0,balance.cog.y),marker.position]),new THREE.LineDashedMaterial({color:0x1d1d1f,dashSize:70,gapSize:35})));group.children[group.children.length-1].computeLineDistances()}
   const target=new THREE.Vector3(c.l/2,c.h*.42,c.w/2),distance=Math.max(c.l,c.w*2.5,c.h*2.5)*1.25/camera.zoom;
