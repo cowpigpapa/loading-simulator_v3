@@ -22,6 +22,11 @@ test('validation warning uses the in-app notice dialog',async({page})=>{
   await expect(page.getByRole('heading',{name:'제품 정보를 확인해 주세요'})).toBeVisible();
 });
 
+test('admin controls stay hidden before login',async({page})=>{
+  await page.goto('/');
+  await expect(page.locator('#adminButton')).toBeHidden();
+});
+
 test('guest project saves, reloads, and recalculates automatically',async({page})=>{
   await page.goto('/');
   await page.getByRole('button',{name:'샘플 불러오기'}).click();
