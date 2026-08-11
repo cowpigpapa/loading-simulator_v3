@@ -7,6 +7,7 @@
 - v3 저장소: https://github.com/cowpigpapa/loading-simulator_v3
 - 운영 중인 v2: https://cowpigpapa.github.io/loading-simulator_v2/
 - 제품 요구사항: [LOADING-SIMULATOR-PRD.md](LOADING-SIMULATOR-PRD.md)
+- 알고리즘 정책과 한계: [ALGORITHM-POLICY.md](ALGORITHM-POLICY.md)
 
 ## 주요 기능
 
@@ -114,6 +115,7 @@ project-store.js    로컬·Supabase 저장과 로그인
 supabase-schema.sql 사용자별 저장 테이블과 RLS 정책
 vendor/three.min.js 로컬 3D 엔진
 LOADING-SIMULATOR-PRD.md 제품 요구사항 문서
+ALGORITHM-POLICY.md 알고리즘 원칙·판정 기준·한계 문서
 ```
 
 ## 기술 구성

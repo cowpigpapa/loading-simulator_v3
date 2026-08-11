@@ -5,6 +5,7 @@
 - 제품 단계: Vercel 공개 베타
 - v3 서비스: https://loadwise-v3.vercel.app/
 - v3 저장소: https://github.com/cowpigpapa/loading-simulator_v3
+- 알고리즘 정책: [ALGORITHM-POLICY.md](ALGORITHM-POLICY.md)
 - 운영 중인 v2: https://cowpigpapa.github.io/loading-simulator_v2/
 
 ## 1. 제품 정의
@@ -299,6 +300,7 @@ LoadWise는 제품의 규격·중량·수량·형상·적층 제약을 입력하
 5. Excel 결과로 모든 컨테이너의 배치와 고정재 위치를 식별할 수 있어야 한다.
 6. 200개 화물 계산 중 UI 진행 상태가 계속 갱신되어야 한다.
 7. 화면과 내보내기 문서에 현장 안전 검토 필요성을 고지해야 한다.
+8. 알고리즘 변경 시 `ALGORITHM-POLICY.md`의 판정 기준, 한계와 변경 이력을 함께 갱신해야 한다.
 
 ---
 
