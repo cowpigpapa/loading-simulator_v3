@@ -33,6 +33,14 @@ test('beta safety notice stays in the project toolbar',async({page})=>{
   await expect(page.locator('.result-panel .safety-notice')).toHaveCount(0);
 });
 
+test('metrics follow the 3D view and dense sections collapse',async({page})=>{
+  await page.goto('/');
+  await expect(page.locator('#canvasWrap + #stats')).toHaveCount(1);
+  const products=page.locator('.product-list-card');await expect(products).toHaveAttribute('open','');await products.locator('summary').click();await expect(products).not.toHaveAttribute('open','');
+  await page.getByRole('button',{name:'샘플 불러오기'}).click();
+  const securing=page.locator('#securingPanel');await expect(securing).toHaveAttribute('open','');await securing.locator('summary').click();await expect(securing).not.toHaveAttribute('open','');
+});
+
 test('guest project saves, reloads, and recalculates automatically',async({page})=>{
   await page.goto('/');
   await page.getByRole('button',{name:'샘플 불러오기'}).click();

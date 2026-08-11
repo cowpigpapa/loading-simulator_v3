@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="styles.css?v=20260728-14">
   <link rel="stylesheet" href="layout-fixes.css?v=20260728-1">
   <link rel="stylesheet" href="v2.css?v=20260804-1">
-  <link rel="stylesheet" href="v3-projects.css?v=20260811-11">
+  <link rel="stylesheet" href="v3-projects.css?v=20260811-12">
 </head>
 <body>
   <header class="topbar">
@@ -80,8 +80,11 @@
           <button class="text-button" id="downloadTemplate">CSV 템플릿 다운로드</button>
         </div>
 
-        <div class="product-list-head"><div><strong>제품 목록</strong> <span id="productCount">(0개 품목 · 0박스)</span></div><button class="top-simulate" id="recalculateList" type="button">시뮬레이션 실행 <b>→</b></button></div>
-        <div class="product-list" id="productList"></div>
+        <details class="collapsible-card product-list-card" open>
+          <summary><div><strong>제품 목록</strong> <span id="productCount">(0개 품목 · 0박스)</span></div><span class="collapse-state"></span></summary>
+          <div class="collapse-action"><button class="top-simulate" id="recalculateList" type="button">시뮬레이션 실행 <b>→</b></button></div>
+          <div class="product-list" id="productList"></div>
+        </details>
 
         <div class="divider"></div>
         <div class="step-heading compact"><span>02</span><div><h2>컨테이너 설정</h2></div></div>
@@ -122,15 +125,15 @@
           </div>
         </div>
 
-        <div class="recommendation" id="recommendation" hidden></div>
-        <div class="securing-recommendation" id="securingRecommendation" hidden></div>
-
         <div class="stats" id="stats">
           <div><span>공간 활용률</span><strong id="volumeRate">—</strong><div class="meter"><i id="volumeBar"></i></div></div>
           <div><span>중량 활용률</span><strong id="weightRate">—</strong><div class="meter"><i id="weightBar"></i></div></div>
           <div><span>적재 수량</span><strong id="loadedCount">—</strong><small id="loadedDetail">시뮬레이션 전</small></div>
           <div><span>총 적재 중량</span><strong id="totalWeight">—</strong><small id="weightDetail">허용 중량 —</small></div>
         </div>
+
+        <div class="recommendation" id="recommendation" hidden></div>
+        <details class="collapsible-card securing-card" id="securingPanel" hidden open><summary><div><strong>고정재 권고</strong><span id="securingCount"></span></div><span class="collapse-state"></span></summary><div class="securing-recommendation" id="securingRecommendation"></div></details>
 
         <div class="loading-plan">
           <div class="plan-head"><div><span class="result-kicker">LOAD SEQUENCE</span><h2>적재 순서</h2><p class="coordinate-note">위치: 문·좌측·바닥을 기준으로 한 시작점 · 크기: 회전 후 실제 배치 방향</p></div><div class="plan-actions"><button id="toggleSequence" type="button">전체 보기</button><button id="exportPlan" disabled>Excel 계획 내보내기</button></div></div>
@@ -222,7 +225,7 @@
   <script src="vendor/supabase.js?v=2.112.2"></script>
   <script src="supabase-config.js"></script>
   <script src="project-model.js?v=20260811-3"></script>
-  <script src="app.js?v=20260811-10"></script>
+  <script src="app.js?v=20260811-11"></script>
   <script src="project-store.js?v=20260811-9"></script>
 </body>
 </html>
