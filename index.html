@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="styles.css?v=20260728-14">
   <link rel="stylesheet" href="layout-fixes.css?v=20260728-1">
   <link rel="stylesheet" href="v2.css?v=20260804-1">
-  <link rel="stylesheet" href="v3-projects.css?v=20260811-8">
+  <link rel="stylesheet" href="v3-projects.css?v=20260811-9">
 </head>
 <body>
   <header class="topbar">
@@ -142,6 +142,14 @@
 
   </main>
 
+  <dialog id="messageDialog" class="project-dialog message-dialog" aria-labelledby="messageTitle" aria-describedby="messageText">
+    <div class="message-symbol" aria-hidden="true"><span></span></div>
+    <span class="result-kicker">LOADWISE NOTICE</span>
+    <h2 id="messageTitle">안내</h2>
+    <p id="messageText"></p>
+    <div class="message-actions"><button id="messageCancel" type="button" hidden>취소</button><button id="messageConfirm" class="dialog-primary" type="button">확인</button></div>
+  </dialog>
+
   <dialog id="guideDialog" class="project-dialog policy-dialog">
     <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
     <span class="result-kicker">USER GUIDE</span>
@@ -204,7 +212,7 @@
   <script src="vendor/supabase.js?v=2.112.2"></script>
   <script src="supabase-config.js"></script>
   <script src="project-model.js?v=20260811-3"></script>
-  <script src="app.js?v=20260811-9"></script>
-  <script src="project-store.js?v=20260811-7"></script>
+  <script src="app.js?v=20260811-10"></script>
+  <script src="project-store.js?v=20260811-8"></script>
 </body>
 </html>

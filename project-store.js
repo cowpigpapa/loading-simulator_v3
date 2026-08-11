@@ -2,6 +2,7 @@
   const LOCAL_KEY='loadwise.v3.projects',cfg=window.LOADWISE_SUPABASE||{},configured=Boolean(cfg.url&&cfg.publishableKey&&window.supabase),client=configured?window.supabase.createClient(cfg.url,cfg.publishableKey):null;
   let user=null,currentId=null,suggestedName='',suppressDirty=false,dirty=false,saving=false,saveAsNew=false;
   const $=id=>document.getElementById(id);
+  const message=(text,options)=>window.showAppMessage(text,options);
   function readLocal(){
     const raw=localStorage.getItem(LOCAL_KEY);
     if(!raw)return[];
@@ -19,16 +20,16 @@
   function record(name,id=currentId){return{id:id||crypto.randomUUID(),name,payload:snapshot(),updated_at:new Date().toISOString()}}
   async function list(){if(user){const{data,error}=await client.from('projects').select('id,name,payload,updated_at').order('updated_at',{ascending:false});if(error)throw error;return data}return readLocal().sort((a,b)=>String(b.updated_at||'').localeCompare(String(a.updated_at||'')))}
   function showSaveDialog(name){$('saveNameInput').value=name;$('saveDialog').showModal();setTimeout(()=>$('saveNameInput').select(),0)}
-  function requestSave(){if(saving)return;saveAsNew=false;if(currentId){if(confirm('현재 프로젝트에 저장할까요?'))save($('projectName').value);return}saveAsNew=true;showSaveDialog(suggestedName||`적재 계획 ${new Date().toLocaleDateString('ko-KR')}`)}
+  async function requestSave(){if(saving)return;saveAsNew=false;if(currentId){if(await message('현재 입력과 설정으로 기존 저장 내용을 업데이트합니다.',{title:'현재 프로젝트에 저장할까요?',tone:'confirm',confirmAction:true,actionLabel:'저장'}))save($('projectName').value);return}saveAsNew=true;showSaveDialog(suggestedName||`적재 계획 ${new Date().toLocaleDateString('ko-KR')}`)}
   function requestSaveAs(){if(saving)return;saveAsNew=true;showSaveDialog(currentId?`${$('projectName').value} 복사본`:suggestedName||`적재 계획 ${new Date().toLocaleDateString('ko-KR')}`)}
   async function save(name){
-    name=name.trim();if(!name)return alert('저장 이름을 입력해 주세요.');if(name.length>80)return alert('저장 이름은 80자 이내로 입력해 주세요.');
+    name=name.trim();if(!name)return message('프로젝트를 구분할 수 있는 저장 이름을 입력해 주세요.',{title:'저장 이름이 필요합니다',tone:'warning'});if(name.length>80)return message('저장 이름은 80자 이내로 입력해 주세요.',{title:'저장 이름이 너무 깁니다',tone:'warning'});
     saving=true;$('saveProject').disabled=true;$('saveAsProject').disabled=true;$('confirmSave').disabled=true;state('저장 중…');
     try{
       if(user){const row={...(!saveAsNew&&currentId?{id:currentId}:{}),user_id:user.id,name,payload:snapshot(),updated_at:new Date().toISOString()},{data,error}=await client.from('projects').upsert(row).select('id').single();if(error)throw error;currentId=data.id}
       else{const rows=readLocal(),next=record(name,saveAsNew?null:currentId),index=rows.findIndex(x=>x.id===next.id);if(index>=0)rows[index]=next;else rows.push(next);writeLocal(rows);currentId=next.id}
       showCurrent(name);$('saveDialog').close();dirty=false;state(savedLabel(),'saved');
-    }catch(error){console.error(error);state('저장 실패','error');alert(`저장하지 못했습니다. ${error.message}`)}
+    }catch(error){console.error(error);state('저장 실패','error');message(error.message,{title:'프로젝트를 저장하지 못했습니다',tone:'error'})}
     finally{saving=false;saveAsNew=false;$('saveProject').disabled=false;$('saveAsProject').disabled=false;$('confirmSave').disabled=false}
   }
   async function openList(){
@@ -38,22 +39,22 @@
       el.innerHTML=rows.length?rows.map(row=>`<article><button class="project-open" data-open="${escapeHtml(row.id)}"><strong>${escapeHtml(row.name)}</strong><small>${formatDate(row.updated_at)}</small></button><button class="project-delete" data-delete-project="${escapeHtml(row.id)}" aria-label="${escapeHtml(row.name)} 삭제">삭제</button></article>`).join(''):'<p class="empty-projects">아직 저장된 프로젝트가 없습니다.</p>';
       el.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>open(b.dataset.open));el.querySelectorAll('[data-delete-project]').forEach(b=>b.onclick=()=>remove(b.dataset.deleteProject));
       if(!$('projectsDialog').open)$('projectsDialog').showModal();
-    }catch(error){alert(`저장 목록을 불러오지 못했습니다. ${error.message}`)}
+    }catch(error){message(error.message,{title:'저장 목록을 불러오지 못했습니다',tone:'error'})}
   }
   async function open(id){
-    if(dirty&&!confirm('저장하지 않은 변경사항이 있습니다. 저장하지 않고 불러올까요?'))return;
+    if(dirty&&!await message('현재 변경사항은 저장되지 않습니다. 선택한 프로젝트를 불러오시겠습니까?',{title:'저장하지 않은 변경사항이 있습니다',tone:'warning',confirmAction:true,actionLabel:'불러오기'}))return;
     try{const row=(await list()).find(x=>x.id===id);if(!row)return;suppressDirty=true;window.loadwiseProject.apply(row.payload);suppressDirty=false;currentId=row.id;showCurrent(row.name);$('projectsDialog').close();dirty=false;state(savedLabel(),'saved');$('simulate').click()}
-    catch(error){suppressDirty=false;alert(`프로젝트를 불러오지 못했습니다. ${error.message}`)}
+    catch(error){suppressDirty=false;message(error.message,{title:'프로젝트를 불러오지 못했습니다',tone:'error'})}
   }
   async function remove(id){
-    if(!confirm('이 저장을 삭제할까요?'))return;
+    if(!await message('삭제한 프로젝트는 복구할 수 없습니다.',{title:'이 저장을 삭제할까요?',tone:'danger',confirmAction:true,actionLabel:'삭제'}))return;
     try{if(user){const{error}=await client.from('projects').delete().eq('id',id);if(error)throw error}else writeLocal(readLocal().filter(x=>x.id!==id));if(currentId===id){currentId=null;showCurrent();dirty=true;state('저장되지 않음','dirty')}await openList()}
-    catch(error){alert(`삭제하지 못했습니다. ${error.message}`)}
+    catch(error){message(error.message,{title:'프로젝트를 삭제하지 못했습니다',tone:'error'})}
   }
-  function fresh(force=false){if(!force&&dirty&&!confirm('저장하지 않은 변경사항을 지우고 새 프로젝트를 시작할까요?'))return;location.reload()}
-  async function emailLogin(){if(!configured)return;const email=$('loginEmail').value.trim();if(!email)return alert('이메일을 입력해 주세요.');const{error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});$('authMessage').textContent=error?error.message:'이메일로 로그인 링크를 보냈습니다.'}
+  async function fresh(force=false){if(!force&&dirty&&!await message('현재 입력과 시뮬레이션 결과가 초기화됩니다.',{title:'새 프로젝트를 시작할까요?',tone:'warning',confirmAction:true,actionLabel:'새로 시작'}))return;location.reload()}
+  async function emailLogin(){if(!configured)return;const email=$('loginEmail').value.trim();if(!email)return message('로그인 링크를 받을 이메일 주소를 입력해 주세요.',{title:'이메일이 필요합니다',tone:'warning'});const{error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});$('authMessage').textContent=error?error.message:'이메일로 로그인 링크를 보냈습니다.'}
   async function trackVisitors(){const todayEl=$('todayVisitors'),totalEl=$('totalVisitors');if(!client){todayEl.textContent='—';totalEl.textContent='—';return}const parts=Object.fromEntries(new Intl.DateTimeFormat('en',{timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date()).map(x=>[x.type,x.value])),date=`${parts.year}-${parts.month}-${parts.day}`,request=async(p_counter_key,should_increment)=>{const{data,error}=await client.rpc('increment_visitor',{p_counter_key,should_increment});if(error)throw error;return Number(data)};try{const totalKey='loadwise-v3-total-visitor-counted',dailyKey=`loadwise-v3-daily-${date}`,incrementTotal=!localStorage.getItem(totalKey),incrementDaily=!localStorage.getItem(dailyKey),[today,total]=await Promise.all([request(`visitors-${date}`,incrementDaily),request('visitors-total',incrementTotal)]);if(incrementTotal)localStorage.setItem(totalKey,'1');if(incrementDaily)localStorage.setItem(dailyKey,'1');todayEl.textContent=today.toLocaleString();totalEl.textContent=total.toLocaleString()}catch(error){console.error(error);todayEl.textContent='—';totalEl.textContent='—'}}
-  async function logout(){if(dirty&&!confirm('로그아웃할까요? 저장하지 않은 변경사항은 사라질 수 있습니다.'))return;await client?.auth.signOut()}
+  async function logout(){if(dirty&&!await message('저장하지 않은 변경사항은 사라질 수 있습니다.',{title:'로그아웃할까요?',tone:'warning',confirmAction:true,actionLabel:'로그아웃'}))return;await client?.auth.signOut()}
   function renderAccount(){const signed=Boolean(user),button=$('accountButton'),identity=$('accountIdentity');button.hidden=!configured;button.dataset.state=signed?'signed-in':'signed-out';button.textContent=signed?'로그아웃':'로그인';identity.hidden=!signed;identity.textContent=signed?`클라우드 · ${user.email}`:'';$('localNotice').hidden=signed;$('localNotice').textContent=configured?'로그인 전에는 이 브라우저에만 저장됩니다.':'이 브라우저에만 저장됩니다.';if(signed&&$('accountDialog').open)$('accountDialog').close()}
   function formatDate(value){const date=new Date(value);return Number.isNaN(date.getTime())?'저장 날짜 없음':date.toLocaleString('ko-KR')}
   function escapeHtml(value){return String(value??'').replace(/[&<>'"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[ch]))}
