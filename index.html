@@ -3,35 +3,45 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LoadSpace v2 — 인텔리전트 컨테이너 적재 시뮬레이터</title>
+  <title>LoadWise v3 — 저장되는 컨테이너 적재 시뮬레이터</title>
   <meta name="description" content="제품 규격과 수량을 기반으로 컨테이너 적재 계획을 계산하고 3D로 시각화하세요.">
-  <meta property="og:title" content="LoadSpace v2">
-  <meta property="og:description" content="Intelligent Container Loading Simulator">
+  <meta property="og:title" content="LoadWise v3">
+  <meta property="og:description" content="저장하고 다시 불러오는 컨테이너 적재 시뮬레이터">
   <meta property="og:image" content="/og.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="/og.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Noto+Sans+KR:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260728-14">
   <link rel="stylesheet" href="layout-fixes.css?v=20260728-1">
   <link rel="stylesheet" href="v2.css?v=20260804-1">
+  <link rel="stylesheet" href="v3-projects.css?v=20260811-2">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="LoadSpace 홈">
+    <a class="brand" href="#" aria-label="LoadWise 홈">
       <span class="brand-mark"><span></span><span></span><span></span></span>
-      <span>LoadSpace <sup>v2</sup></span>
+      <span>LoadWise <sup>v3</sup></span>
     </a>
     <nav aria-label="주 메뉴">
       <a class="active" href="#planner">적재 플래너</a>
       <a href="#guide">사용 가이드</a>
     </nav>
-    <button class="ghost-button" id="loadDemo">샘플 불러오기</button>
+    <div class="account-actions"><span id="localNotice" class="local-notice">이 브라우저에만 저장</span><button class="account-button" id="accountButton" hidden>로그인</button></div>
   </header>
 
   <main>
     <section class="workspace" id="planner">
+      <div class="project-toolbar" aria-label="프로젝트 관리">
+        <div class="current-project"><strong id="currentProjectName" hidden>저장되지 않음</strong><small id="saveState" class="save-state">저장되지 않음</small></div>
+        <input id="projectName" type="hidden" value="" maxlength="80">
+        <button id="newProjectTop" type="button">새 프로젝트</button>
+        <button id="openProjects" type="button">저장 목록</button>
+        <button id="loadDemo" type="button">샘플 불러오기</button>
+        <button id="saveAsProject" type="button">신규 저장</button>
+        <button id="saveProject" class="primary" type="button">저장</button>
+      </div>
       <aside class="control-panel">
         <div class="control-heading"><div class="step-heading"><span>01</span><div><h2>제품 데이터</h2><p>직접 입력하거나 파일을 업로드하세요.</p></div></div><div class="top-actions"><button class="top-simulate" id="simulate">시뮬레이션 실행 <b>→</b></button></div></div>
 
@@ -135,9 +145,29 @@
     </section>
   </main>
 
-  <footer><span>LoadSpace</span><p>Container loading intelligence for better logistics.</p><div class="visitor-count" aria-label="방문자 수"><span>오늘 <b id="todayVisitors">—</b></span><span>누적 <b id="totalVisitors">—</b></span></div><small>© 2026 LoadSpace</small></footer>
+  <dialog id="accountDialog" class="project-dialog">
+    <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
+    <div id="signedOutPanel"><span class="result-kicker">CLOUD SAVE</span><h2>LoadWise 로그인</h2><p>로그인하면 프로젝트를 안전하게 저장하고 다른 기기에서 이어서 작업할 수 있습니다.</p><label>이메일<input id="loginEmail" type="email" placeholder="name@company.com" autocomplete="email"></label><button id="emailLogin" class="dialog-primary" type="button">이메일 로그인 링크 받기</button><small id="authMessage">Supabase 연결 전에는 로컬 테스트 저장으로 동작합니다.</small></div>
+    <div id="signedInPanel" hidden><span class="result-kicker">ACCOUNT</span><h2 id="accountEmail">로그인 사용자</h2><button id="logoutButton" type="button">로그아웃</button></div>
+  </dialog>
+
+  <dialog id="projectsDialog" class="project-dialog wide">
+    <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
+    <span class="result-kicker">SAVED PROJECTS</span><h2>저장 목록</h2><p id="projectsDescription">이 브라우저에 저장된 적재 프로젝트입니다.</p><div id="projectList" class="saved-project-list"></div>
+  </dialog>
+
+  <dialog id="saveDialog" class="project-dialog compact">
+    <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
+    <span class="result-kicker">SAVE</span><h2>저장 이름</h2><p>나중에 쉽게 찾을 수 있는 이름을 입력하세요.</p><label>저장 이름<input id="saveNameInput" maxlength="80" placeholder="예: 부산 수출 8월 1차"></label><button id="confirmSave" class="dialog-primary" type="button">이 이름으로 저장</button>
+  </dialog>
+
+  <footer><span>LoadWise</span><p>Container loading intelligence for better logistics.</p><div class="visitor-count" aria-label="방문자 수"><span>오늘 <b id="todayVisitors">—</b></span><span>누적 <b id="totalVisitors">—</b></span></div><small>© 2026 LoadWise v3</small></footer>
   <script src="vendor/xlsx.full.min.js?v=0.18.5"></script>
   <script src="vendor/three.min.js?v=0.160.0"></script>
-  <script src="app.js?v=20260804-four-side-support3"></script>
+  <script src="vendor/supabase.js?v=2.112.2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="project-model.js?v=20260811-1"></script>
+  <script src="app.js?v=20260811-2"></script>
+  <script src="project-store.js?v=20260811-2"></script>
 </body>
 </html>

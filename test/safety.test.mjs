@@ -12,6 +12,7 @@ const base = { name:"box", group:"기타", shape:"box", l:1000, w:800, h:700, we
 test("quoted newline CSV", () => assert.equal(run(`parseCSV('name,note\\nA,"line1\\nline2"')[0].note`), "line1\nline2"));
 test("escaped quote CSV", () => assert.equal(run(`parseCSV('name,note\\nA,"a""b"')[0].note`), 'a"b'));
 test("unclosed quote rejected", () => assert.throws(() => run(`parseCSV('name\\n"A')`), /따옴표/));
+test("uploaded labels are HTML escaped", () => assert.equal(run(`esc('<img src=x onerror=alert(1)>')`), "&lt;img src=x onerror=alert(1)&gt;"));
 for (const [value,expected] of [["yes",true],["예",true],["true",true],["1",true],["no",false],["아니오",false],["false",false],["0",false]]) test(`flag ${value}`, () => assert.equal(run(`parseFlag('${value}','flag',2)`), expected));
 test("blank flag rejected", () => assert.throws(() => run(`parseFlag('','flag',2)`), /2행/));
 test("zero quantity rejected", () => assert.throws(() => run(`mapRow({'제품명':'A','형상':'박스형','길이':1,'너비':1,'높이':1,'중량':1,'수량':0,'눕힘허용':'no','상부적재금지':'no'},0)`), /수량/));

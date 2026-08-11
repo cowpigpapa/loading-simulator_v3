@@ -1,9 +1,9 @@
-# LoadSpace
+# LoadWise v3
 
 제품 규격, 중량, 수량과 적재 제약을 입력하면 컨테이너별 배치·적재 순서·고정재 위치를 계산하고 3D로 보여주는 브라우저 기반 컨테이너 로딩 시뮬레이터입니다.
 
-- 공개 사이트: https://cowpigpapa.github.io/loading-simulator_v2/
-- GitHub 저장소: https://github.com/cowpigpapa/loading-simulator_v2
+- 현재 단계: 로컬 개발·검증
+- 운영 중인 v2: https://cowpigpapa.github.io/loading-simulator_v2/
 - 제품 요구사항: [LOADING-SIMULATOR-PRD.md](LOADING-SIMULATOR-PRD.md)
 
 ## 주요 기능
@@ -25,6 +25,18 @@
 - 계산 진행률과 완료 시간
 - 전체 계획 Excel 내보내기
 - 일일·누적 방문자 표시
+- 제품 목록과 컨테이너 설정을 프로젝트로 저장·불러오기
+
+## 프로젝트 저장
+
+첫 저장에서 이름을 확인하고, 이후 `저장`은 확인 후 현재 프로젝트를 갱신합니다. `신규 저장`은 현재 작업을 다른 이름의 새 프로젝트로 보존합니다. Excel/CSV 파일명이나 처음 등록한 제품명이 저장 이름으로 자동 제안되며, `저장 목록`에서 기존 프로젝트를 불러오거나 삭제할 수 있습니다.
+
+- Supabase 미연결: 현재 브라우저 프로필의 `localStorage`에만 저장
+- Supabase 연결 및 로그인: 계정별 클라우드 저장
+- 저장하지 않은 변경사항이 있으면 프로젝트 교체 전에 확인
+- 손상된 로컬 데이터는 자동으로 덮어쓰지 않음
+
+로컬 저장은 같은 브라우저 프로필을 사용하는 사람과 분리되지 않습니다. 개인별 보안과 여러 기기 연동이 필요하면 Supabase Auth를 연결해야 합니다.
 
 ## 입력 항목
 
@@ -77,7 +89,7 @@
 
 ## 실행
 
-별도 빌드 과정이 없는 정적 웹 애플리케이션입니다. 로컬에서는 `index.html`을 열 수 있으며, Excel 파서와 방문자 카운터처럼 외부 네트워크를 사용하는 일부 기능은 연결 상태에 영향을 받을 수 있습니다.
+정적 웹 애플리케이션이며 로컬 개발 서버와 배포용 빌드를 제공합니다.
 
 ```bash
 npm test
@@ -91,6 +103,9 @@ index.html          화면 구조
 styles.css          기본 스타일
 layout-fixes.css    반응형 레이아웃 보정
 app.js              입력, 적재 알고리즘, 3D, 내보내기
+project-model.js    저장 데이터 정규화
+project-store.js    로컬·Supabase 저장과 로그인
+supabase-schema.sql 사용자별 저장 테이블과 RLS 정책
 vendor/three.min.js 로컬 3D 엔진
 LOADING-SIMULATOR-PRD.md 제품 요구사항 문서
 ```
@@ -100,7 +115,8 @@ LOADING-SIMULATOR-PRD.md 제품 요구사항 문서
 - HTML, CSS, Vanilla JavaScript
 - Three.js WebGL 렌더링
 - SheetJS Excel 입출력
-- GitHub Pages 정적 배포
+- Supabase Auth·Postgres(선택, 계정별 저장)
+- Vercel 배포 예정
 
 ## 한계
 
