@@ -41,7 +41,7 @@
   }
   async function open(id){
     if(dirty&&!confirm('저장하지 않은 변경사항이 있습니다. 저장하지 않고 불러올까요?'))return;
-    try{const row=(await list()).find(x=>x.id===id);if(!row)return;suppressDirty=true;window.loadwiseProject.apply(row.payload);suppressDirty=false;currentId=row.id;showCurrent(row.name);$('projectsDialog').close();dirty=false;state('저장됨','saved')}
+    try{const row=(await list()).find(x=>x.id===id);if(!row)return;suppressDirty=true;window.loadwiseProject.apply(row.payload);suppressDirty=false;currentId=row.id;showCurrent(row.name);$('projectsDialog').close();dirty=false;state('저장됨','saved');$('simulate').click()}
     catch(error){suppressDirty=false;alert(`프로젝트를 불러오지 못했습니다. ${error.message}`)}
   }
   async function remove(id){
