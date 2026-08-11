@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="styles.css?v=20260728-14">
   <link rel="stylesheet" href="layout-fixes.css?v=20260728-1">
   <link rel="stylesheet" href="v2.css?v=20260804-1">
-  <link rel="stylesheet" href="v3-projects.css?v=20260811-15">
+  <link rel="stylesheet" href="v3-projects.css?v=20260811-16">
 </head>
 <body>
   <header class="topbar">
@@ -130,16 +130,16 @@
           <div><span>적재 수량</span><strong id="loadedCount">—</strong><small id="loadedDetail">시뮬레이션 전</small></div>
           <div><span>총 적재 중량</span><strong id="totalWeight">—</strong><small id="weightDetail">허용 중량 —</small></div>
         </div>
-        <section class="balance-card" id="balanceCard" hidden><div><span class="result-kicker">WEIGHT BALANCE</span><h3>무게중심과 중량 배분</h3></div><strong id="balanceStatus">—</strong><div class="balance-grid"><span>문쪽 / 안쪽<b id="frontRearBalance">—</b></span><span>좌측 / 우측<b id="leftRightBalance">—</b></span><span>무게중심 위치<b id="cogPosition">—</b></span><span>중심 편차<b id="cogOffset">—</b></span></div><p>화물 중심점의 정적 모멘트 기준입니다. 축하중·바닥 집중하중·운송 중 동하중은 계산하지 않습니다.</p></section>
-
         <div class="recommendation" id="recommendation" hidden></div>
-        <details class="collapsible-card securing-card" id="securingPanel" hidden open><summary><div><strong>고정재 권고</strong><span id="securingCount"></span></div><span class="collapse-state collapse-toggle"></span></summary><div class="securing-recommendation" id="securingRecommendation"></div></details>
+        <section class="balance-card" id="balanceCard" hidden><div><span class="result-kicker">WEIGHT BALANCE</span><h3>무게중심과 중량 배분</h3></div><strong id="balanceStatus">—</strong><div class="balance-grid"><span>문쪽 / 안쪽<b id="frontRearBalance">—</b></span><span>좌측 / 우측<b id="leftRightBalance">—</b></span><span>무게중심 위치<b id="cogPosition">—</b></span><span>중심 편차<b id="cogOffset">—</b></span></div><p>화물 중심점의 정적 모멘트 기준입니다. 축하중·바닥 집중하중·운송 중 동하중은 계산하지 않습니다.</p></section>
 
         <div class="loading-plan">
           <div class="plan-head"><div><span class="result-kicker">LOAD SEQUENCE</span><h2>적재 순서</h2><p class="coordinate-note">위치: 문·좌측·바닥을 기준으로 한 시작점 · 크기: 회전 후 실제 배치 방향</p></div><div class="plan-actions"><button class="collapse-toggle" id="toggleSequence" type="button" aria-expanded="false">펼치기 ▾</button><button id="fieldResultButton" disabled>현장 결과</button><button id="exportPdf" disabled>PDF 작업지시서</button><button id="exportPlan" disabled>Excel 계획</button></div></div>
           <div class="sequence-empty" id="sequenceEmpty">시뮬레이션 결과가 여기에 표시됩니다.</div>
           <ol class="sequence-list" id="sequenceList"></ol>
         </div>
+
+        <details class="collapsible-card securing-card" id="securingPanel" hidden open><summary><div><strong>고정재 권고</strong><span id="securingCount"></span></div><span class="collapse-state collapse-toggle"></span></summary><div class="securing-recommendation" id="securingRecommendation"></div></details>
       </section>
     </section>
 

@@ -36,6 +36,9 @@ test('beta safety notice stays in the project toolbar',async({page})=>{
 test('metrics follow the 3D view and dense sections collapse',async({page})=>{
   await page.goto('/');
   await expect(page.locator('#canvasWrap + #stats')).toHaveCount(1);
+  await expect(page.locator('#balanceCard + .loading-plan')).toHaveCount(1);
+  await expect(page.locator('.loading-plan + #securingPanel')).toHaveCount(1);
+  await expect(page.locator('.loading-plan')).toHaveCSS('border-top-style','solid');
   for(const control of ['#toggleProducts','#securingPanel .collapse-state','#toggleSequence']){await expect(page.locator(control)).toHaveCSS('border-radius','999px');await expect(page.locator(control)).toHaveCSS('min-height','34px')}
   await page.getByRole('button',{name:'샘플 불러오기'}).click();
   const products=page.locator('.product-list-card');await expect(page.locator('#toggleProducts')).toHaveText('펼치기 ▾');await page.locator('#toggleProducts').click();await expect(products).toHaveClass(/expanded/);await expect(page.locator('#toggleProducts')).toHaveText('접기 ▴');await expect(page.locator('#productList')).toHaveCSS('overflow-y','visible');
