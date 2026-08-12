@@ -31,7 +31,8 @@ test('login offers social, email and guest options',async({page})=>{
   await page.goto('/');await page.getByRole('button',{name:'로그인'}).click();
   await expect(page.getByRole('button',{name:'Google로 계속하기'})).toBeVisible();
   await expect(page.getByRole('button',{name:'Microsoft로 계속하기'})).toBeVisible();
-  await expect(page.getByRole('button',{name:'이메일 로그인 링크 받기'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'인증번호 받기'})).toBeVisible();
+  await expect(page.locator('#emailOtp')).toBeHidden();
   await expect(page.locator('.guest-save-note')).toContainText('현재 브라우저');
 });
 
