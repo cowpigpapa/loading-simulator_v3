@@ -45,7 +45,7 @@
         <button id="saveProject" class="primary" type="button">저장</button>
       </div>
       <aside class="control-panel">
-        <div class="control-heading"><div class="step-heading"><span>01</span><div><h2>제품 데이터</h2><p>직접 입력하거나 파일을 업로드하세요.</p></div></div><div class="top-actions"><button class="top-simulate" id="simulate">시뮬레이션 실행 <b>→</b></button></div></div>
+        <div class="control-heading"><div class="step-heading"><span>01</span><div><h2>제품 데이터</h2><p>직접 입력하거나 파일을 업로드하세요.</p></div></div></div>
 
         <div class="tabs" role="tablist">
           <button class="tab active" data-tab="manual" role="tab" aria-selected="true">직접 입력</button>
@@ -80,31 +80,29 @@
           <button class="text-button" id="downloadTemplate">CSV 템플릿 다운로드</button>
         </div>
 
-        <section class="collapsible-card product-list-card">
-          <div class="collapsible-head"><div><strong>제품 목록</strong> <span id="productCount">(0개 품목 · 0박스)</span></div><div class="collapsible-actions"><button class="collapse-toggle" id="toggleProducts" type="button" aria-expanded="false">펼치기 ▾</button><button class="top-simulate" id="recalculateList" type="button">시뮬레이션 실행 <b>→</b></button></div></div>
+        <section class="collapsible-card product-list-card expanded">
+          <div class="collapsible-head"><div><strong>제품 목록</strong> <span id="productCount">(0개 품목 · 0박스)</span></div><div class="collapsible-actions"><button class="collapse-toggle" id="toggleProducts" type="button" aria-expanded="true">접기 ▴</button><button class="top-simulate" id="recalculateList" type="button">시뮬레이션 실행 <b>→</b></button></div></div>
           <div class="product-list" id="productList"></div>
         </section>
 
-        <div class="divider"></div>
-        <div class="step-heading compact"><span>02</span><div><h2>컨테이너 설정</h2></div></div>
-        <label class="container-select">컨테이너 규격
-          <select id="containerType"></select>
-        </label>
-        <div class="container-spec" id="containerSpec"></div>
-        <div class="optimization-row"><label class="priority-label">최적화 기준
-          <select id="optimization">
-            <option value="sequence">1. 안전 적재 · 안정적인 1단 바닥 배치</option>
-            <option value="volume">2. 최대 적재 · 공간 집약 + 적극적인 2단 적재</option>
-            <option value="intelligent" selected>3. 자동 추천 · 화물 특성에 맞춰 전략 선택</option>
-            <option value="width">4. 폭 우선 · 짧은 방향의 빈 공간 최소화</option>
-          </select>
-        </label><button class="top-simulate" id="recalculateOptions" type="button" disabled>시뮬레이션 실행 <b>→</b></button></div>
       </aside>
 
       <section class="result-panel">
         <div class="result-header">
           <div><span class="result-kicker">LOADING VIEW</span><h2>3D 적재 시뮬레이션</h2></div>
           <div class="result-tools"><div id="simulationStatus" class="simulation-status" hidden aria-live="polite"></div><div class="securing-visibility" aria-label="3D 고정재 표시"><button id="toggleDunnage" class="active dunnage-toggle" aria-pressed="true"><i></i><span>부목</span><b>ON</b></button><button id="toggleAirbags" class="active airbag-toggle" aria-pressed="true"><i></i><span>에어백</span><b>ON</b></button><button id="toggleBands" class="active band-toggle" aria-pressed="true"><i></i><span>밴드</span><b>ON</b></button></div><div class="view-actions"><button id="viewIso" class="active">3D</button><button id="viewTop">상면</button><button id="viewDoor">문 기준</button><button id="viewLeft">좌측면</button><button id="viewRight">우측면</button><button id="resetView" aria-label="보기 초기화">↻</button></div><div class="container-tabs" id="containerTabs" aria-label="컨테이너별 적재 결과"></div></div>
+        </div>
+
+        <div class="simulation-config-bar">
+          <label class="priority-label">최적화 기준<select id="optimization">
+            <option value="sequence">1. 안전 적재 · 안정적인 1단 바닥 배치</option>
+            <option value="volume">2. 최대 적재 · 공간 집약 + 적극적인 2단 적재</option>
+            <option value="intelligent" selected>3. 자동 추천 · 화물 특성에 맞춰 전략 선택</option>
+            <option value="width">4. 폭 우선 · 짧은 방향의 빈 공간 최소화</option>
+          </select></label>
+          <label class="container-select">컨테이너 규격<select id="containerType"></select></label>
+          <div class="container-spec" id="containerSpec"></div>
+          <button class="top-simulate" id="recalculateOptions" type="button" disabled>시뮬레이션 실행 <b>→</b></button>
         </div>
 
         <div class="canvas-wrap" id="canvasWrap">

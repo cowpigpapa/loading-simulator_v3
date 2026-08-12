@@ -43,7 +43,7 @@
   }
   async function open(id){
     if(dirty&&!await message('현재 변경사항은 저장되지 않습니다. 선택한 프로젝트를 불러오시겠습니까?',{title:'저장하지 않은 변경사항이 있습니다',tone:'warning',confirmAction:true,actionLabel:'불러오기'}))return;
-    try{const row=(await list()).find(x=>x.id===id);if(!row)return;suppressDirty=true;window.loadwiseProject.apply(row.payload);suppressDirty=false;currentId=row.id;showCurrent(row.name);$('projectsDialog').close();dirty=false;state(savedLabel(),'saved');$('simulate').click()}
+    try{const row=(await list()).find(x=>x.id===id);if(!row)return;suppressDirty=true;window.loadwiseProject.apply(row.payload);suppressDirty=false;currentId=row.id;showCurrent(row.name);$('projectsDialog').close();dirty=false;state(savedLabel(),'saved');$('recalculateOptions').click()}
     catch(error){suppressDirty=false;message(error.message,{title:'프로젝트를 불러오지 못했습니다',tone:'error'})}
   }
   async function remove(id){
