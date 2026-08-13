@@ -43,7 +43,7 @@ button.collapse-toggle,.collapse-state{display:inline-flex;align-items:center;ju
 @media(max-width:760px){.loading-plan .plan-head{align-items:flex-start;gap:14px;padding:15px}.loading-plan .sequence-list,.loading-plan.expanded .sequence-list{padding:0 10px 10px}.plan-actions{justify-content:flex-start}.step-heading h2,.result-header h2,.plan-head h2{font-size:19px}}
 
 /* Compact planner chrome and align the view controls with the title baseline. */
-body .workspace{margin-top:6px;padding-top:64px}
+body .workspace{min-height:0;margin-top:6px;padding-top:64px}
 .project-toolbar{top:0}
 .result-header{align-items:flex-end;flex-wrap:nowrap;gap:10px}
 .result-header .simulation-status{order:3;margin-left:0}
