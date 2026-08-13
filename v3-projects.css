@@ -42,5 +42,18 @@ button.collapse-toggle,.collapse-state{display:inline-flex;align-items:center;ju
 @media(max-width:760px){.project-toolbar .current-project{grid-column:span 2}.project-toolbar .safety-notice{grid-column:span 3;width:100%;max-width:none;justify-content:center}.project-toolbar .safety-notice span{display:none}body .workspace{padding-top:122px}.result-header .simulation-status{position:static;margin-left:0}.result-control-row{justify-content:flex-start;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.simulation-config-bar{grid-template-columns:1fr 1fr;margin-top:12px}.simulation-config-bar .priority-label,.simulation-config-bar .container-spec{grid-column:1/-1}.simulation-config-bar .container-spec{grid-row:auto}.simulation-config-bar .top-simulate{width:100%}}
 @media(max-width:760px){.loading-plan .plan-head{align-items:flex-start;gap:14px;padding:15px}.loading-plan .sequence-list,.loading-plan.expanded .sequence-list{padding:0 10px 10px}.plan-actions{justify-content:flex-start}.step-heading h2,.result-header h2,.plan-head h2{font-size:19px}}
 
+/* Compact planner chrome and align the view controls with the title baseline. */
+body .workspace{margin-top:6px;padding-top:64px}
+.project-toolbar{top:0}
+.result-header{align-items:flex-end;flex-wrap:nowrap;gap:10px}
+.result-header .simulation-status{order:3;margin-left:0}
+.result-header .result-control-row{flex:1;flex-wrap:wrap;margin:0 0 1px auto}
+.simulation-config-bar{grid-template-columns:minmax(250px,1fr) 140px minmax(230px,.8fr) 116px;margin-top:10px;padding:9px}
+.simulation-config-bar select,.simulation-config-bar .container-spec,.simulation-config-bar .top-simulate{height:34px;min-height:34px}
+.simulation-config-bar select{padding-block:5px}
+.simulation-config-bar .top-simulate{padding-inline:9px;font-size:9px}
+@media(max-width:1100px){.result-header{flex-wrap:wrap}.result-header .result-control-row{flex-basis:100%}.simulation-config-bar{grid-template-columns:minmax(220px,1fr) 140px 116px}}
+@media(max-width:760px){body .workspace{margin-top:4px;padding-top:118px}.project-toolbar{top:0}.result-header{flex-wrap:wrap}.result-header .result-control-row{flex-basis:100%}.simulation-config-bar{grid-template-columns:1fr 1fr}}
+
 .social-login-buttons{display:grid;gap:10px;margin-top:24px}.project-dialog .social-login{display:flex;align-items:center;justify-content:center;gap:11px;width:100%;border-color:#d2d2d7;border-radius:11px;background:#fff;font-size:15px}.project-dialog .social-login:hover{background:#f7f7f8}.project-dialog .social-login:disabled{opacity:.55;cursor:wait}.google-mark{color:#4285f4;font-size:18px;font-family:Arial,sans-serif}.microsoft-mark{display:grid;grid-template-columns:repeat(2,7px);gap:2px}.microsoft-mark i{width:7px;height:7px;background:#f25022}.microsoft-mark i:nth-child(2){background:#7fba00}.microsoft-mark i:nth-child(3){background:#00a4ef}.microsoft-mark i:nth-child(4){background:#ffb900}.login-divider{display:flex;align-items:center;gap:12px;margin:22px 0 0;color:var(--v3-muted);font-size:12px}.login-divider::before,.login-divider::after{content:"";height:1px;flex:1;background:var(--v3-line)}#signedOutPanel .guest-save-note{display:block;margin-top:18px!important}
 .email-otp{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;margin-top:14px}.email-otp[hidden]{display:none}.email-otp label{margin:0!important}.email-otp input{letter-spacing:.3em;font-weight:700;text-align:center}.project-dialog .email-otp button{height:48px;border-radius:11px;background:var(--v3-ink);color:#fff}@media(max-width:520px){.email-otp{grid-template-columns:1fr}.project-dialog .email-otp button{width:100%}}
