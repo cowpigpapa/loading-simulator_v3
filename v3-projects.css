@@ -29,6 +29,7 @@ button.collapse-toggle,.collapse-state{display:inline-flex;align-items:center;ju
 .result-header .simulation-status{margin-left:auto}
 .result-control-row{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-top:14px;min-width:0}
 .result-control-row .container-tabs{margin:0;flex-wrap:nowrap;align-items:center;border-left:1px solid var(--v3-line);padding-left:9px}
+.result-control-row .container-nav-slot{flex:0 0 86px;width:86px}
 .result-control-row .container-tabs .page-label{min-width:44px;justify-content:center;font-size:11px;color:var(--v3-ink)}
 .result-control-row .container-tabs .nav-arrow{width:28px;padding:5px 0;border:0;background:transparent}
 .result-control-row .view-actions button{min-height:34px;padding:7px 10px;font-size:11px;line-height:1}
@@ -46,8 +47,8 @@ button.collapse-toggle,.collapse-state{display:inline-flex;align-items:center;ju
 body .workspace{min-height:0;margin-top:6px;padding-top:64px}
 .project-toolbar{top:0}
 .result-header{align-items:flex-end;flex-wrap:nowrap;gap:10px}
-.result-header .simulation-status{order:3;margin-left:0}
-.result-header .result-control-row{flex:1;flex-wrap:wrap;margin:0 0 1px auto}
+.result-header .result-control-row{flex:1;flex-wrap:nowrap;margin:0 0 1px auto}
+.canvas-wrap .simulation-status{position:absolute;top:12px;right:12px;left:auto;z-index:4;box-shadow:0 4px 14px rgba(0,0,0,.08)}
 .simulation-config-bar{grid-template-columns:minmax(250px,1fr) 140px minmax(230px,.8fr) 116px;margin-top:10px;padding:9px}
 .simulation-config-bar select,.simulation-config-bar .container-spec,.simulation-config-bar .top-simulate{height:34px;min-height:34px}
 .simulation-config-bar select{padding-block:5px}

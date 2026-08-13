@@ -84,3 +84,7 @@ test('weight balance, view presets and printable work instruction work together'
   await page.getByRole('button',{name:'우측면',exact:true}).click();await page.getByRole('button',{name:'보기 초기화'}).click();await expect(page.getByRole('button',{name:'3D',exact:true})).toHaveClass(/active/);
   await expect(page.locator('#fieldResultButton')).toHaveCount(0);const popupPromise=page.waitForEvent('popup');await page.locator('#exportPdf').click();const report=await popupPromise;await report.waitForLoadState();await expect(report.getByRole('button',{name:'인쇄 / PDF 저장'})).toBeVisible();await expect(report.getByText('현장 작업 기록')).toBeVisible();await expect(report.getByText('실제 적재 수량')).toBeVisible();
 });
+
+test('simulation result does not move the view controls',async({page})=>{
+  await page.goto('/');const view=page.getByRole('button',{name:'문 기준',exact:true}),before=await view.boundingBox();await page.getByRole('button',{name:'샘플 불러오기'}).click();const after=await view.boundingBox(),status=await page.locator('#simulationStatus').boundingBox(),canvas=await page.locator('#canvasWrap').boundingBox();expect(after.x).toBe(before.x);expect(status.x+status.width).toBeLessThanOrEqual(canvas.x+canvas.width);
+});
