@@ -92,5 +92,5 @@ test('simulation result does not move the view controls',async({page})=>{
 });
 
 test('footer keeps professional contrast and aligns the visitor counter',async({page})=>{
-  await page.goto('/');const footer=page.locator('.site-footer'),workspace=page.locator('.workspace'),visitors=page.locator('.site-footer .visitor-count'),style=await footer.evaluate(e=>getComputedStyle(e).backgroundColor),workBox=await workspace.boundingBox(),visitorBox=await visitors.boundingBox();expect(style).toBe('rgb(16, 21, 18)');expect(Math.abs(workBox.x+workBox.width-(visitorBox.x+visitorBox.width))).toBeLessThanOrEqual(20);
+  await page.goto('/');const footer=page.locator('.site-footer'),workspace=page.locator('.workspace'),visitors=page.locator('.site-footer .visitor-count'),style=await footer.evaluate(e=>getComputedStyle(e).backgroundColor),workBox=await workspace.boundingBox(),footerBox=await footer.boundingBox(),visitorBox=await visitors.boundingBox();expect(style).toBe('rgb(16, 21, 18)');expect(Math.abs(workBox.x+workBox.width-(visitorBox.x+visitorBox.width))).toBeLessThanOrEqual(20);expect(Math.abs(footerBox.y+footerBox.height/2-(visitorBox.y+visitorBox.height/2))).toBeLessThanOrEqual(1);
 });
