@@ -32,7 +32,7 @@ button.collapse-toggle,.collapse-state{display:inline-flex;align-items:center;ju
 .result-control-row .container-nav-slot{flex:0 0 86px;width:86px}
 .result-control-row .container-tabs .page-label{min-width:44px;justify-content:center;font-size:11px;color:var(--v3-ink)}
 .result-control-row .container-tabs .nav-arrow{width:28px;padding:5px 0;border:0;background:transparent}
-.result-control-row .view-actions button{min-height:34px;padding:7px 10px;font-size:11px;line-height:1}
+.result-control-row .view-actions button{min-height:34px;padding:7px 8px;font-size:11px;line-height:1;white-space:nowrap}
 .simulation-config-bar{grid-template-columns:minmax(250px,1fr) 145px minmax(230px,.8fr) 138px;margin-top:12px}
 .simulation-config-bar .container-spec{display:flex;align-items:center;gap:7px;height:38px;margin:0;padding:0 11px;border:1px solid var(--v3-line);border-radius:7px;background:#fff;white-space:nowrap}
 .simulation-config-bar .container-spec span{display:inline;font-size:11px}

@@ -80,6 +80,7 @@ test('guest project saves, reloads, and recalculates automatically',async({page}
 
 test('weight balance, view presets and printable work instruction work together',async({page})=>{
   await page.goto('/');await page.getByRole('button',{name:'샘플 불러오기'}).click();await expect(page.locator('#balanceCard')).toBeVisible();await expect(page.locator('#frontRearBalance')).not.toHaveText('—');
+  const cog=page.getByRole('button',{name:'무게중심',exact:true});await cog.click();await expect(cog).toHaveClass(/active/);await expect(cog).toHaveAttribute('aria-pressed','true');await cog.click();await expect(cog).not.toHaveClass(/active/);
   for(const name of ['문 기준','좌측면','우측면','상면','3D']){await page.getByRole('button',{name,exact:true}).click();await expect(page.getByRole('button',{name,exact:true})).toHaveClass(/active/)}
   await page.getByRole('button',{name:'우측면',exact:true}).click();await page.getByRole('button',{name:'보기 초기화'}).click();await expect(page.getByRole('button',{name:'3D',exact:true})).toHaveClass(/active/);
   await expect(page.locator('#fieldResultButton')).toHaveCount(0);const popupPromise=page.waitForEvent('popup');await page.locator('#exportPdf').click();const report=await popupPromise;await report.waitForLoadState();await expect(report.getByRole('button',{name:'인쇄 / PDF 저장'})).toBeVisible();await expect(report.getByText('현장 작업 기록')).toBeVisible();await expect(report.getByText('실제 적재 수량')).toBeVisible();
