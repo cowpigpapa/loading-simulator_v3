@@ -1,6 +1,6 @@
 (function(root){
-  const CURRENT_SCHEMA_VERSION=3,CURRENT_ALGORITHM_VERSION='extreme-dblf-width-2026.08';
-  const allowedContainers=new Set(['20ft','40ft','40hc','45hc']),allowedOptimizations=new Set(['sequence','volume','width','intelligent']);
+  const CURRENT_SCHEMA_VERSION=3,CURRENT_ALGORITHM_VERSION='extreme-dblf-balance-auto-2026.08';
+  const allowedContainers=new Set(['20ft','40ft','40hc','45hc']),allowedOptimizations=new Set(['sequence','volume','width','balance','intelligent']);
   function number(value,fallback=0){const n=Number(value);return Number.isFinite(n)&&n>0?n:fallback}
   function normalizeProduct(p={}){return{name:String(p.name||'').trim(),group:String(p.group||'기타').trim()||'기타',shape:p.shape==='cylinder'?'cylinder':'box',qty:Math.max(1,Math.floor(number(p.qty,1))),l:number(p.l),w:number(p.w),h:number(p.h),weight:number(p.weight),rotate:Boolean(p.rotate),fragile:Boolean(p.fragile),source:['manual','csv','excel','json'].includes(p.source)?p.source:'manual'}}
   function normalizeResultSummary(value){if(!value||typeof value!=='object')return null;return{state:['complete','partial','failed'].includes(value.state)?value.state:'failed',loaded:Math.max(0,Math.floor(Number(value.loaded)||0)),total:Math.max(0,Math.floor(Number(value.total)||0)),containerCount:Math.max(0,Math.floor(Number(value.containerCount)||0)),totalWeight:Math.max(0,Number(value.totalWeight)||0),calculatedAt:String(value.calculatedAt||'')}}

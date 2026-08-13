@@ -15,7 +15,7 @@ test('legacy snapshots migrate and current metadata is preserved',()=>{
   const legacy=model.normalizeSnapshot({schemaVersion:1,products:[],containerType:'40ft',optimization:'sequence'});
   assert.equal(legacy.schemaVersion,3);assert.equal(legacy.algorithmVersion,'legacy');assert.equal(legacy.resultSummary,null);assert.equal(legacy.fieldResult,null);
   const current=model.createSnapshot([],'20ft','intelligent',{algorithmVersion:model.CURRENT_ALGORITHM_VERSION,resultSummary:{state:'complete',loaded:36,total:36,containerCount:1,totalWeight:6692,calculatedAt:'2026-08-11T00:00:00.000Z'}});
-  assert.equal(current.algorithmVersion,'extreme-dblf-width-2026.08');assert.equal(current.resultSummary.loaded,36);assert.equal(current.resultSummary.totalWeight,6692);
+  assert.equal(current.algorithmVersion,'extreme-dblf-balance-auto-2026.08');assert.equal(current.resultSummary.loaded,36);assert.equal(current.resultSummary.totalWeight,6692);
 });
 
 test('field comparison survives project normalization',()=>{
@@ -25,6 +25,10 @@ test('field comparison survives project normalization',()=>{
 
 test('width-first optimization is preserved',()=>{
   assert.equal(model.createSnapshot([],'20ft','width').optimization,'width');
+});
+
+test('balance-first optimization is preserved',()=>{
+  assert.equal(model.createSnapshot([],'20ft','balance').optimization,'balance');
 });
 
 test('invalid project values fall back safely',()=>{

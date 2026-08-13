@@ -95,10 +95,11 @@
 
         <div class="simulation-config-bar">
           <label class="priority-label">최적화 기준<select id="optimization">
-            <option value="sequence">1. 안전 적재 · 안정적인 1단 바닥 배치</option>
-            <option value="volume">2. 최대 적재 · 공간 집약 + 적극적인 2단 적재</option>
-            <option value="intelligent" selected>3. 자동 추천 · 화물 특성에 맞춰 전략 선택</option>
-            <option value="width">4. 폭 우선 · 짧은 방향의 빈 공간 최소화</option>
+            <option value="intelligent" selected>1. 자동 추천 · 4개 전략 결과를 비교해 선택</option>
+            <option value="sequence">2. 안전 우선 · 안정적인 바닥 배치</option>
+            <option value="volume">3. 공간 활용 우선 · 적재 수량과 공간 집약</option>
+            <option value="width">4. 폭 최적화 · 짧은 방향의 빈 공간 최소화</option>
+            <option value="balance">5. 무게중심 우선 · 전후·좌우 중량 편차 최소화</option>
           </select></label>
           <label class="container-select">컨테이너 규격<select id="containerType"></select></label>
           <div class="container-spec" id="containerSpec"></div>
