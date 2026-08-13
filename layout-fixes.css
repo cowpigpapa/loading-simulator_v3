@@ -11,7 +11,7 @@
   content: "";
   position: absolute;
   top: 64px;
-  bottom: 32px;
+  bottom: 16px;
   left: 430px;
   width: 1px;
   background: var(--line);
