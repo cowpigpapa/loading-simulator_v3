@@ -100,7 +100,7 @@ if(typeof window!=='undefined')window.loadwiseProject={algorithmVersion:Loadwise
 function changeProductQty(index,delta){if(!products[index])return;products[index].qty=Math.max(1,products[index].qty+delta);renderProducts();markSimulationChanged()}
 function setProductQty(index,value){if(!products[index])return;const qty=Math.max(1,Math.floor(Number(value)||1));if(products[index].qty===qty){renderProducts();return}products[index].qty=qty;renderProducts();markSimulationChanged()}
 function markSimulationChanged(){$('recalculateList').classList.add('needs-update');$('recalculateList').innerHTML='다시 계산 <b>→</b>';$('recalculateOptions').classList.add('needs-update');$('recalculateOptions').innerHTML='다시 계산 <b>→</b>'}
-function updateContainerSpec(){const c=CONTAINERS[$('containerType').value]||CONTAINERS['20ft'];$('containerSpec').innerHTML=`<div><span>내부 길이</span><strong>${(c.l/1000).toFixed(2)} m</strong></div><div><span>내부 폭 / 높이</span><strong>${(c.w/1000).toFixed(2)} / ${(c.h/1000).toFixed(2)} m</strong></div><div><span>최대 적재</span><strong>${(c.maxWeight/1000).toFixed(1)} t</strong></div>`}
+function updateContainerSpec(){const c=CONTAINERS[$('containerType').value]||CONTAINERS['20ft'];$('containerSpec').innerHTML=`<span>내부</span><strong>${(c.l/1000).toFixed(2)} × ${(c.w/1000).toFixed(2)} × ${(c.h/1000).toFixed(2)} m</strong><i></i><span>최대</span><strong>${(c.maxWeight/1000).toFixed(1)} t</strong>`}
 
 function transverseVoidAfterPlacement(s,d,placed,c){
   const [l,w,h]=d,x=s.x+l/2,intervals=[[s.y,s.y+w]];
