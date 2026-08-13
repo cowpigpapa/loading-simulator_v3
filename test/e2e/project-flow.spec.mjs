@@ -14,6 +14,14 @@ test('user guide opens inside the app',async({page})=>{
   await expect(page.getByRole('heading',{name:'LoadWise 사용 가이드'})).toBeVisible();
 });
 
+test('CTU Code guide opens inside the app',async({page})=>{
+  await page.goto('/');
+  await page.getByRole('button',{name:'CTU Code'}).click();
+  await expect(page.locator('#ctuDialog')).toHaveAttribute('open','');
+  await expect(page.getByRole('heading',{name:'CTU Code란?'})).toBeVisible();
+  await expect(page.getByText('LoadWise의 현재 반영 범위')).toBeVisible();
+});
+
 test('validation warning uses the in-app notice dialog',async({page})=>{
   await page.goto('/');
   await page.locator('#productName').fill('');

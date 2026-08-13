@@ -28,6 +28,7 @@
       <a class="active" href="#planner">적재 플래너</a>
       <button id="guideButton" type="button">사용 가이드</button>
       <button id="policyButton" type="button">알고리즘 정책</button>
+      <button id="ctuButton" type="button">CTU Code</button>
     </nav>
     <div class="account-actions"><span id="localNotice" class="local-notice">로그인 전에는 이 브라우저에만 저장됩니다.</span><span id="accountIdentity" class="account-identity" hidden></span><button class="admin-button" id="adminButton" hidden>관리</button><button class="account-button" id="accountButton" hidden>로그인</button></div>
   </header>
@@ -166,7 +167,7 @@
     </div>
     <div class="policy-sections">
       <details open><summary>1. 제품 입력</summary><ul><li>직접 입력에서는 제품명, 형상, 수량, 길이·너비·높이와 개당 중량을 입력합니다.</li><li>여러 제품은 Excel 또는 CSV로 한 번에 등록할 수 있습니다.</li><li>눕힘 허용은 높이 축 변경을 허용하며, 상부 적재 금지는 해당 화물 위의 배치를 막습니다.</li></ul></details>
-      <details><summary>2. 컨테이너와 최적화 기준</summary><ul><li>20ft, 40ft, 40ft High Cube, 45ft High Cube를 지원합니다.</li><li>안전 적재는 지지 조건을 보수적으로 적용하고 최대 적재는 적재 수량을 우선합니다.</li><li>폭 우선은 긴 방향 사용을 일부 허용하면서 짧은 방향의 잔여 공간을 먼저 줄입니다.</li><li>자동 추천은 화물 특성에 따라 안전형 또는 최대적재형을 선택합니다.</li></ul></details>
+      <details><summary>2. 컨테이너와 최적화 기준</summary><ul><li>20ft, 40ft, 40ft High Cube, 45ft High Cube를 지원합니다.</li><li>안전 우선은 지지 조건을 보수적으로 적용하고 공간 활용 우선은 적재 수량을 우선합니다.</li><li>폭 최적화는 짧은 방향의 잔여 공간을, 무게중심 우선은 전후·좌우 중량 편차를 줄입니다.</li><li>자동 추천은 4개 전략 결과를 비교해 선택 전략과 근거를 표시합니다.</li></ul></details>
       <details><summary>3. 시뮬레이션 결과 확인</summary><ul><li>3D와 상면 보기로 배치를 확인하고 단계 재생으로 실제 적재 순서를 검토합니다.</li><li>여러 컨테이너가 필요하면 화살표로 각 컨테이너 결과를 이동합니다.</li><li>각재·부목, 에어백과 래싱 밴드 표시는 화면에서 켜고 끌 수 있습니다.</li></ul></details>
       <details><summary>4. 프로젝트 저장</summary><ul><li>비로그인 상태에서는 현재 브라우저에, 로그인 상태에서는 계정별 클라우드에 저장됩니다.</li><li>저장 목록에서 프로젝트를 불러오면 저장된 조건으로 시뮬레이션이 자동 실행됩니다.</li><li>미배치 화물이 있으면 안전 검토를 위해 Excel 내보내기가 제한됩니다.</li></ul></details>
     </div>
@@ -209,6 +210,27 @@
       <details><summary>알고리즘 변경 원칙</summary><ul><li>공통 안전 조건을 우회하지 않습니다.</li><li>기존 전략과 같은 입력으로 결과를 비교합니다.</li><li>경계·충돌·중량·지지 회귀 테스트를 통과해야 합니다.</li><li>미배치와 실패 이유를 숨기지 않고 정책 버전과 변경 이력을 갱신합니다.</li></ul></details>
     </div>
     <div class="policy-warning"><strong>현장 확인 필수</strong><span>실제 상차 전 화물 사양, 컨테이너 상태, 고정재 제조사 지침과 운송 규정을 확인하세요.</span></div>
+  </dialog>
+
+  <dialog id="ctuDialog" class="project-dialog policy-dialog">
+    <form method="dialog"><button class="dialog-close" aria-label="닫기">×</button></form>
+    <span class="result-kicker">CTU CODE GUIDE</span>
+    <h2>CTU Code란?</h2>
+    <p>IMO·ILO·UNECE가 공동 발행한 Cargo Transport Unit 포장·적입 실무 지침입니다. 컨테이너에 무엇을 얼마나 싣는지뿐 아니라 작업 준비, 중량 배분, 화물 고정과 운송 중 위험까지 다룹니다.</p>
+    <div class="policy-summary">
+      <article><b>BEFORE</b><strong>작업 전 확인</strong><span>컨테이너 상태·화물 정보·작업 계획 점검</span></article>
+      <article><b>PACKING</b><strong>안전한 적입</strong><span>중량 분배·바닥 하중·빈 공간과 작업 동선 검토</span></article>
+      <article><b>SECURING</b><strong>이동 방지</strong><span>블로킹·쇼어링·래싱·마찰을 조합해 검증</span></article>
+      <article><b>AFTER</b><strong>출발 전 확인</strong><span>문 개방 위험·표시·서류·최종 상태 점검</span></article>
+    </div>
+    <div class="policy-sections">
+      <details open><summary>1. CTU Code의 성격</summary><ul><li>정식 명칭은 IMO/ILO/UNECE Code of Practice for Packing of Cargo Transport Units입니다.</li><li>전 세계 CTU 작업의 공통 실무 기준을 제시하지만 그 자체가 모든 국가에서 동일하게 강제되는 법률이나 인증서는 아닙니다.</li><li>송하인, 포장 작업자, 운송인과 현장 책임자의 역할 및 정보 전달을 함께 다룹니다.</li></ul></details>
+      <details><summary>2. 적입 전·중·후 핵심 확인</summary><ul><li>적입 전에는 CTU의 구조 손상, 청결·건조 상태, 내부 돌출물과 문 작동 상태를 확인합니다.</li><li>적입 중에는 총중량, 무게중심, 바닥 하중 분산, 화물 강도, 적재 순서와 작업자 안전을 검토합니다.</li><li>적입 후에는 화물 이동과 문을 열 때 쏟아질 위험을 방지하고, 고정 상태와 필요한 표시·서류를 확인합니다.</li></ul></details>
+      <details><summary>3. 고정의 기본 원칙</summary><ul><li>화물 질량만으로 움직이지 않는다고 가정하지 않으며 마찰만을 단독 고정 수단으로 의존하지 않습니다.</li><li>블로킹·쇼어링은 힘을 CTU 구조로 전달하고, 직접 래싱은 목표 방향에 저항하며, 톱오버 래싱은 추가 압력으로 마찰을 높입니다.</li><li>원통과 구름 가능 화물은 초크·웨지·크래들 등 구름 방지 수단을 먼저 검토합니다.</li><li>밴드, 앵커, 화물 고정점과 컨테이너 벽체는 각각의 허용하중을 확인해야 합니다.</li></ul></details>
+      <details><summary>4. 운송 중 작용하는 힘</summary><ul><li>CTU Code는 화물 질량과 도로·철도·해상 조건별 가속도계수로 방향별 관성력을 검토합니다.</li><li>미끄럼과 전도는 서로 다른 위험이므로 전·후·좌·우 방향별 힘과 모멘트를 각각 확인해야 합니다.</li><li>복합운송은 각 운송 구간 중 더 불리한 조건을 고려해야 합니다.</li></ul></details>
+      <details><summary>5. LoadWise의 현재 반영 범위</summary><ul><li>경계·충돌·중량·지지·미배치 검증과 무게중심 표시, 기하학적 고정재 필요성 선별을 제공합니다.</li><li>현재의 50% 접촉 기준은 CTU Code 고정력 계산이 아니라 배치 위험을 찾기 위한 내부 기준입니다.</li><li>운송모드별 가속도, 마찰계수, 미끄럼·전도 모멘트, LC/MSL, STF, 밴드 각도와 앵커 용량 계산은 향후 단계입니다.</li><li>따라서 현재 결과는 CTU Code 기반 사전 검토 자료이며 적합성 인증이나 현장 승인을 대신하지 않습니다.</li></ul></details>
+    </div>
+    <div class="policy-warning"><strong>현장 책임자 확인</strong><span>실제 적입 전 최신 CTU Code, 운송 구간별 규정, 컨테이너 제작사와 고정재 제조사 지침을 확인하세요.</span></div>
   </dialog>
 
   <dialog id="projectsDialog" class="project-dialog wide">

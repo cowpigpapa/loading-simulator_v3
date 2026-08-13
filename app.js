@@ -39,6 +39,7 @@ function init(){
 function bindEvents(){
   $('guideButton').onclick=()=>$('guideDialog').showModal();
   $('policyButton').onclick=()=>$('policyDialog').showModal();
+  $('ctuButton').onclick=()=>$('ctuDialog').showModal();
   document.querySelectorAll('.tab').forEach(tab=>tab.onclick=()=>switchTab(tab.dataset.tab));
   $('addProduct').onclick=addProduct;
   $('loadDemo').onclick=loadDemo;
