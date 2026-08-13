@@ -4,10 +4,28 @@
 
 #planner > .control-panel {
   align-self: start;
+  border-right: 0;
+}
+
+#planner::after {
+  content: "";
+  position: absolute;
+  top: 64px;
+  bottom: 32px;
+  left: 430px;
+  width: 1px;
+  background: var(--line);
+  pointer-events: none;
+}
+
+@media (max-width: 1000px) {
+  #planner::after { left: 370px; }
 }
 
 @media (max-width: 760px) {
   #planner {
     scroll-margin-top: 80px;
   }
+
+  #planner::after { display: none; }
 }
