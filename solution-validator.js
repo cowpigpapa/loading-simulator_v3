@@ -23,9 +23,10 @@
       if(points.length&&!inside({x:loads[i].mx/loads[i].weight,y:loads[i].my/loads[i].weight},hull(points)))errors.push(`${i+1}번 화물 스택의 합성 무게중심이 지지영역 밖에 있음`);
       supports.forEach(({j,area})=>{const share=area/Math.max(1,total);loads[j].weight+=loads[i].weight*share;loads[j].mx+=loads[i].mx*share;loads[j].my+=loads[i].my*share})
     });
+    const compression=placed.map((p,i)=>({topLoad:Math.max(0,loads[i].weight-p.weight),limit:Number.isFinite(p.maxTopLoadKg)?p.maxTopLoadKg:null}));compression.forEach((v,i)=>{if(v.limit!=null&&v.topLoad>v.limit+1e-6)errors.push(`${i+1}번 화물 상부 허용하중 초과: ${Math.round(v.topLoad)}kg / ${v.limit}kg`)});
     const weight=placed.reduce((sum,p)=>sum+p.weight,0);
     if(weight>c.maxWeight+1e-6)errors.push(`허용중량 초과: ${weight}kg / ${c.maxWeight}kg`);
-    return{valid:!errors.length,errors:[...new Set(errors)],metrics:{placed:placed.length,weight}};
+    return{valid:!errors.length,errors:[...new Set(errors)],metrics:{placed:placed.length,weight,compressionVerified:compression.filter(v=>v.limit!=null).length,compressionUnverified:compression.filter(v=>v.limit==null).length,maxTopLoad:compression.reduce((m,v)=>Math.max(m,v.topLoad),0)}};
   }
   function validateShipment(shipment){
     const loads=shipment?.containers||[],options={minSupport:shipment?.priority==='volume'?.7:1},results=loads.map(load=>validateLoad(load,options)),loaded=loads.reduce((sum,l)=>sum+(l.placed?.length||0),0),unallocated=shipment?.unallocated?.length||0,errors=results.flatMap((r,i)=>r.errors.map(e=>`${i+1}번 컨테이너: ${e}`));

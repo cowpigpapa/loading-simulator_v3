@@ -21,6 +21,6 @@ for(const sample of cases)for(const strategy of ['sequence','hybrid','volume','w
 }
 console.table(rows);
 await mkdir('benchmarks',{recursive:true});
-await writeFile('benchmarks/latest.json',JSON.stringify({generatedAt:new Date().toISOString(),engine:'extreme-dblf-hybrid-portfolio-validator-2026.08',rows},null,2));
+await writeFile('benchmarks/latest.json',JSON.stringify({generatedAt:new Date().toISOString(),engine:'extreme-dblf-transport-stability-2026.08',rows},null,2));
 const regressions=rows.filter(r=>r.engine==='portfolio').flatMap(portfolio=>{const single=rows.find(r=>r.engine==='single'&&r.case===portfolio.case&&r.strategy===portfolio.strategy);if(!single)return[];const worse=portfolio.unallocated>single.unallocated||portfolio.containers>single.containers||(portfolio.strategy==='balance'&&portfolio.cogRisk>single.cogRisk+.1);return worse?[`${portfolio.case}/${portfolio.strategy}`]:[]});
 if(rows.some(r=>!r.valid)||regressions.length){console.error('Benchmark gate failed',regressions);process.exitCode=1}

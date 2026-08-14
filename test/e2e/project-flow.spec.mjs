@@ -79,6 +79,8 @@ test('metrics follow the 3D view and dense sections collapse',async({page})=>{
   await expect(page.locator('#simulate')).toHaveCount(0);
   await expect(page.locator('.control-panel #containerType')).toHaveCount(0);
   await expect(page.locator('.simulation-config-bar #containerType')).toBeVisible();
+  await expect(page.locator('.simulation-config-bar #transportMode')).toHaveValue('combined');
+  await expect(page.locator('#toggleBands')).toHaveCount(0);
   await expect(page.locator('.simulation-config-bar #recalculateOptions')).toBeVisible();
   await expect(page.locator('#canvasWrap + #stats')).toHaveCount(1);
   await expect(page.locator('#balanceCard + .loading-plan')).toHaveCount(1);
@@ -116,7 +118,14 @@ test('weight balance, view presets and printable work instruction work together'
   const cog=page.getByRole('button',{name:'무게중심',exact:true});await cog.click();await expect(cog).toHaveClass(/active/);await expect(cog).toHaveAttribute('aria-pressed','true');await cog.click();await expect(cog).not.toHaveClass(/active/);
   for(const name of ['문 기준','좌측면','우측면','상면','3D']){await page.getByRole('button',{name,exact:true}).click();await expect(page.getByRole('button',{name,exact:true})).toHaveClass(/active/)}
   await page.getByRole('button',{name:'우측면',exact:true}).click();await page.getByRole('button',{name:'보기 초기화'}).click();await expect(page.getByRole('button',{name:'3D',exact:true})).toHaveClass(/active/);
-  await expect(page.locator('#fieldResultButton')).toHaveCount(0);const popupPromise=page.waitForEvent('popup');await page.locator('#exportPdf').click();const report=await popupPromise;await report.waitForLoadState();await expect(report.getByRole('button',{name:'인쇄 / PDF 저장'})).toBeVisible();await expect(report.getByText('현장 작업 기록')).toBeVisible();await expect(report.getByText('실제 적재 수량')).toBeVisible();
+  await expect(page.locator('#fieldResultButton')).toHaveCount(0);const popupPromise=page.waitForEvent('popup');await page.locator('#exportPdf').click();const report=await popupPromise;await report.waitForLoadState();await expect(report.getByRole('button',{name:'인쇄 / PDF 저장'})).toBeVisible();await expect(report.getByText('현장 작업 기록')).toBeVisible();await expect(report.getByText('실제 적재 수량')).toBeVisible();await report.close();
+});
+
+test('CTU pre-check and compression status render after simulation',async({page})=>{
+  await page.goto('/');await loadSample(page);
+  await expect(page.locator('#ctuConcentration')).not.toHaveText('—');
+  await expect(page.locator('#ctuVertical')).not.toHaveText('—');
+  await expect(page.locator('#compressionStatus')).not.toHaveText('—');
 });
 
 test('simulation result does not move the view controls',async({page})=>{

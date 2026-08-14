@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-14T09:56:58.080Z",
-  "engine": "extreme-dblf-hybrid-portfolio-validator-2026.08",
+  "generatedAt": "2026-08-14T13:13:42.661Z",
+  "engine": "extreme-dblf-transport-stability-2026.08",
   "rows": [
     {
       "engine": "portfolio",
@@ -12,7 +12,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 570.9,
+      "elapsedMs": 479.3,
       "errors": ""
     },
     {
@@ -25,7 +25,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 601.1,
+      "elapsedMs": 530.6,
       "errors": ""
     },
     {
@@ -38,7 +38,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 1680,
+      "elapsedMs": 1598.4,
       "errors": ""
     },
     {
@@ -51,7 +51,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 592.7,
+      "elapsedMs": 439.5,
       "errors": ""
     },
     {
@@ -63,8 +63,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 60.7,
-      "cogRisk": 12.6,
-      "elapsedMs": 882.4,
+      "cogRisk": 7.5,
+      "elapsedMs": 769.9,
       "errors": ""
     },
     {
@@ -77,7 +77,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 256.6,
+      "elapsedMs": 215.9,
       "errors": ""
     },
     {
@@ -90,7 +90,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 274.8,
+      "elapsedMs": 194.7,
       "errors": ""
     },
     {
@@ -103,7 +103,7 @@
       "containers": 2,
       "volumeRate": 30.4,
       "cogRisk": 16.7,
-      "elapsedMs": 964.8,
+      "elapsedMs": 1053.1,
       "errors": ""
     },
     {
@@ -116,7 +116,7 @@
       "containers": 2,
       "volumeRate": 30.4,
       "cogRisk": 16.7,
-      "elapsedMs": 350.2,
+      "elapsedMs": 332.2,
       "errors": ""
     },
     {
@@ -129,7 +129,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 3.8,
-      "elapsedMs": 758.9,
+      "elapsedMs": 675.7,
       "errors": ""
     },
     {
@@ -141,8 +141,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 9.2,
-      "elapsedMs": 242.2,
+      "cogRisk": 7.8,
+      "elapsedMs": 218.5,
       "errors": ""
     },
     {
@@ -154,8 +154,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 0.5,
-      "elapsedMs": 515.2,
+      "cogRisk": 2.4,
+      "elapsedMs": 696.3,
       "errors": ""
     },
     {
@@ -167,8 +167,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 3,
-      "elapsedMs": 182.2,
+      "cogRisk": 4.9,
+      "elapsedMs": 254.2,
       "errors": ""
     },
     {
@@ -180,8 +180,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 33.5,
-      "elapsedMs": 507.5,
+      "cogRisk": 18.5,
+      "elapsedMs": 498.4,
       "errors": ""
     },
     {
@@ -193,8 +193,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 2.1,
-      "elapsedMs": 837.7,
+      "cogRisk": 5.6,
+      "elapsedMs": 624.7,
       "errors": ""
     },
     {
@@ -206,8 +206,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 2.1,
-      "elapsedMs": 262.1,
+      "cogRisk": 5.6,
+      "elapsedMs": 211.8,
       "errors": ""
     },
     {
@@ -219,8 +219,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 1.8,
-      "elapsedMs": 3341.2,
+      "cogRisk": 2,
+      "elapsedMs": 3246.6,
       "errors": ""
     },
     {
@@ -232,8 +232,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 4.3,
-      "elapsedMs": 829.7,
+      "cogRisk": 2.1,
+      "elapsedMs": 785.4,
       "errors": ""
     },
     {
@@ -246,7 +246,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 81.2,
+      "elapsedMs": 83.1,
       "errors": ""
     },
     {
@@ -259,7 +259,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 91.1,
+      "elapsedMs": 103,
       "errors": ""
     },
     {
@@ -272,7 +272,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 275.5,
+      "elapsedMs": 205.2,
       "errors": ""
     },
     {
@@ -285,7 +285,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 92.2,
+      "elapsedMs": 105.8,
       "errors": ""
     },
     {
@@ -298,7 +298,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 184.2,
+      "elapsedMs": 188.9,
       "errors": ""
     },
     {
@@ -311,7 +311,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 98.2,
+      "elapsedMs": 107.6,
       "errors": ""
     },
     {
@@ -324,7 +324,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 88.1,
+      "elapsedMs": 82.2,
       "errors": ""
     },
     {
@@ -337,7 +337,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 260.5,
+      "elapsedMs": 196.5,
       "errors": ""
     },
     {
@@ -350,7 +350,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 91.5,
+      "elapsedMs": 96.6,
       "errors": ""
     }
   ]
