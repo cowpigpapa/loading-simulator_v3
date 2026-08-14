@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node dev-server.mjs",
     "build": "node build.mjs",
+    "benchmark": "node benchmark.mjs",
     "test": "node --test test/*.test.mjs",
     "test:e2e": "playwright test"
   },

@@ -1,5 +1,12 @@
 import {test,expect} from '@playwright/test';
 
+async function loadSample(page,number=1){
+  await page.getByRole('button',{name:'샘플 불러오기'}).click();
+  await expect(page.getByRole('heading',{name:'샘플 시나리오 선택'})).toBeVisible();
+  await page.locator(`[data-sample="${number}"]`).click();
+  await expect(page.locator('#loadedCount')).not.toHaveText('—',{timeout:20000});
+}
+
 test('algorithm policy opens inside the app',async({page})=>{
   await page.goto('/');
   await page.getByRole('button',{name:'알고리즘 정책'}).click();
@@ -12,6 +19,15 @@ test('user guide opens inside the app',async({page})=>{
   await page.getByRole('button',{name:'사용 가이드'}).click();
   await expect(page.locator('#guideDialog')).toHaveAttribute('open','');
   await expect(page.getByRole('heading',{name:'LoadWise 사용 가이드'})).toBeVisible();
+});
+
+test('sample picker offers three testing scenarios',async({page})=>{
+  await page.goto('/');
+  await page.getByRole('button',{name:'샘플 불러오기'}).click();
+  await expect(page.locator('#sampleDialog [data-sample]')).toHaveCount(3);
+  await expect(page.locator('#sampleDialog')).toContainText('혼합 화물');
+  await expect(page.locator('#sampleDialog')).toContainText('단일 규격');
+  await expect(page.locator('#sampleDialog')).toContainText('3종 크기 조합');
 });
 
 test('CTU Code guide opens inside the app',async({page})=>{
@@ -62,7 +78,7 @@ test('metrics follow the 3D view and dense sections collapse',async({page})=>{
   await expect(page.locator('.loading-plan + #securingPanel')).toHaveCount(1);
   await expect(page.locator('.loading-plan')).toHaveCSS('border-top-style','solid');
   for(const control of ['#toggleProducts','#securingPanel .collapse-state','#toggleSequence']){await expect(page.locator(control)).toHaveCSS('border-radius','999px');await expect(page.locator(control)).toHaveCSS('min-height','34px')}
-  await page.getByRole('button',{name:'샘플 불러오기'}).click();
+  await loadSample(page);
   const products=page.locator('.product-list-card');await expect(products).toHaveClass(/expanded/);await expect(page.locator('#toggleProducts')).toHaveText('접기 ▴');await expect(page.locator('#productList')).toHaveCSS('overflow-y','visible');await page.locator('#toggleProducts').click();await expect(products).not.toHaveClass(/expanded/);await expect(page.locator('#toggleProducts')).toHaveText('펼치기 ▾');await expect(page.locator('#productList')).toHaveCSS('overflow-y','auto');
   await expect(page.locator('#toggleSequence')).toHaveText('펼치기 ▾');await page.locator('#toggleSequence').click();await expect(page.locator('.loading-plan')).toHaveClass(/expanded/);await expect(page.locator('#toggleSequence')).toHaveText('접기 ▴');
   const securing=page.locator('#securingPanel');await expect(securing).not.toHaveAttribute('open','');await securing.locator('summary').click();await expect(securing).toHaveAttribute('open','');
@@ -70,8 +86,8 @@ test('metrics follow the 3D view and dense sections collapse',async({page})=>{
 
 test('guest project saves, reloads, and recalculates automatically',async({page})=>{
   await page.goto('/');
-  await page.getByRole('button',{name:'샘플 불러오기'}).click();
-  await expect(page.locator('#loadedCount')).toHaveText('36개');
+  await loadSample(page);
+  await expect(page.locator('#loadedCount')).toHaveText('36개',{timeout:20000});
   await page.getByRole('button',{name:'저장',exact:true}).click();
   await page.getByRole('textbox',{name:'저장 이름'}).fill('E2E 자동 계산');
   await page.getByRole('button',{name:'이 이름으로 저장'}).click();
@@ -83,12 +99,12 @@ test('guest project saves, reloads, and recalculates automatically',async({page}
   await expect(page.locator('#loadedCount')).toHaveText('—');
   await page.getByRole('button',{name:'저장 목록'}).click();
   await page.locator('[data-open]').filter({hasText:'E2E 자동 계산'}).click();
-  await expect(page.locator('#loadedCount')).toHaveText('36개');
+  await expect(page.locator('#loadedCount')).toHaveText('36개',{timeout:20000});
   await expect(page.locator('#simulationStatus')).toContainText('적재 완료');
 });
 
 test('weight balance, view presets and printable work instruction work together',async({page})=>{
-  await page.goto('/');await page.getByRole('button',{name:'샘플 불러오기'}).click();await expect(page.locator('#balanceCard')).toBeVisible();await expect(page.locator('#frontRearBalance')).not.toHaveText('—');
+  await page.goto('/');await loadSample(page);await expect(page.locator('#balanceCard')).toBeVisible();await expect(page.locator('#frontRearBalance')).not.toHaveText('—');
   const cog=page.getByRole('button',{name:'무게중심',exact:true});await cog.click();await expect(cog).toHaveClass(/active/);await expect(cog).toHaveAttribute('aria-pressed','true');await cog.click();await expect(cog).not.toHaveClass(/active/);
   for(const name of ['문 기준','좌측면','우측면','상면','3D']){await page.getByRole('button',{name,exact:true}).click();await expect(page.getByRole('button',{name,exact:true})).toHaveClass(/active/)}
   await page.getByRole('button',{name:'우측면',exact:true}).click();await page.getByRole('button',{name:'보기 초기화'}).click();await expect(page.getByRole('button',{name:'3D',exact:true})).toHaveClass(/active/);
@@ -96,7 +112,7 @@ test('weight balance, view presets and printable work instruction work together'
 });
 
 test('simulation result does not move the view controls',async({page})=>{
-  await page.goto('/');const view=page.getByRole('button',{name:'문 기준',exact:true}),before=await view.boundingBox();await page.getByRole('button',{name:'샘플 불러오기'}).click();const after=await view.boundingBox(),status=await page.locator('#simulationStatus').boundingBox(),canvas=await page.locator('#canvasWrap').boundingBox(),leftRun=await page.locator('#recalculateList').boundingBox(),rightRun=await page.locator('#recalculateOptions').boundingBox(),divider=await page.locator('#planner').evaluate(e=>{const s=getComputedStyle(e,'::after');return{bottom:parseFloat(s.bottom),left:parseFloat(s.left),display:s.display,marginBottom:parseFloat(getComputedStyle(e).marginBottom)}});expect(after.x).toBe(before.x);expect(status.x+status.width).toBeLessThanOrEqual(canvas.x+canvas.width);expect([leftRun.width,leftRun.height]).toEqual([rightRun.width,rightRun.height]);expect(divider).toEqual({bottom:16,left:430,display:'block',marginBottom:12});
+  await page.goto('/');const view=page.getByRole('button',{name:'문 기준',exact:true}),before=await view.boundingBox();await loadSample(page);const after=await view.boundingBox(),status=await page.locator('#simulationStatus').boundingBox(),canvas=await page.locator('#canvasWrap').boundingBox(),leftRun=await page.locator('#recalculateList').boundingBox(),rightRun=await page.locator('#recalculateOptions').boundingBox(),divider=await page.locator('#planner').evaluate(e=>{const s=getComputedStyle(e,'::after');return{bottom:parseFloat(s.bottom),left:parseFloat(s.left),display:s.display,marginBottom:parseFloat(getComputedStyle(e).marginBottom)}});expect(after.x).toBe(before.x);expect(status.x+status.width).toBeLessThanOrEqual(canvas.x+canvas.width);expect([leftRun.width,leftRun.height]).toEqual([rightRun.width,rightRun.height]);expect(divider).toEqual({bottom:16,left:430,display:'block',marginBottom:12});
 });
 
 test('footer keeps professional contrast and aligns the visitor counter',async({page})=>{
