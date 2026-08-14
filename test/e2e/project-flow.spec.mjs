@@ -30,6 +30,14 @@ test('sample picker offers three testing scenarios',async({page})=>{
   await expect(page.locator('#sampleDialog')).toContainText('3종 크기 조합');
 });
 
+test('product list title and mobile layout do not wrap or overflow',async({page})=>{
+  await page.setViewportSize({width:390,height:844});await page.goto('/');
+  const title=page.locator('.collapsible-head strong'),count=page.locator('#productCount');
+  await expect(title).toHaveText('제품 목록');await expect(title).toHaveCSS('white-space','nowrap');
+  const positions=await page.locator('.collapsible-head').evaluate(el=>{const heading=el.querySelector('strong'),meta=el.querySelector('#productCount');return{titleBottom:heading.getBoundingClientRect().bottom,countTop:meta.getBoundingClientRect().top,clientWidth:document.documentElement.clientWidth,scrollWidth:document.documentElement.scrollWidth}});
+  expect(positions.countTop).toBeGreaterThanOrEqual(positions.titleBottom);expect(positions.scrollWidth).toBe(positions.clientWidth);
+});
+
 test('CTU Code guide opens inside the app',async({page})=>{
   await page.goto('/');
   await page.getByRole('button',{name:'CTU Code'}).click();
