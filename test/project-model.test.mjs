@@ -15,7 +15,7 @@ test('legacy snapshots migrate and current metadata is preserved',()=>{
   const legacy=model.normalizeSnapshot({schemaVersion:1,products:[],containerType:'40ft',optimization:'sequence'});
   assert.equal(legacy.schemaVersion,4);assert.equal(legacy.algorithmVersion,'legacy');assert.equal(legacy.transportMode,'combined');assert.equal(legacy.resultSummary,null);assert.equal(legacy.fieldResult,null);
   const current=model.createSnapshot([],'20ft','intelligent',{algorithmVersion:model.CURRENT_ALGORITHM_VERSION,resultSummary:{state:'complete',loaded:36,total:36,containerCount:1,totalWeight:6692,calculatedAt:'2026-08-11T00:00:00.000Z'}});
-  assert.equal(current.algorithmVersion,'extreme-dblf-validated-portfolio-2026.08');assert.equal(current.resultSummary.loaded,36);assert.equal(current.resultSummary.totalWeight,6692);
+  assert.equal(current.algorithmVersion,'extreme-dblf-safe-width-portfolio-2026.08');assert.equal(current.resultSummary.loaded,36);assert.equal(current.resultSummary.totalWeight,6692);
 });
 
 test('field comparison survives project normalization',()=>{
@@ -28,8 +28,8 @@ test('optional top-load capacity is preserved without inventing a default',()=>{
   assert.equal(model.createSnapshot([{name:'상자',qty:1,l:1,w:1,h:1,weight:1}],'20ft','sequence').products[0].maxTopLoadKg,null);
 });
 
-test('width-first optimization is preserved',()=>{
-  assert.equal(model.createSnapshot([],'20ft','width').optimization,'width');
+test('legacy width-first projects migrate to safe-width hybrid',()=>{
+  assert.equal(model.createSnapshot([],'20ft','width').optimization,'hybrid');
 });
 
 test('safe-width hybrid optimization is preserved',()=>{

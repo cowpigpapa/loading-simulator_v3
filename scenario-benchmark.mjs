@@ -11,14 +11,15 @@ for(const file of files){
   context.csv=await readFile(`test-projects/${file}`,'utf8');
   const products=vm.runInContext('parseCSV(csv).map(mapRow)',context),units=products.flatMap((p,pi)=>Array.from({length:p.qty},(_,n)=>({...p,pi,unit:n+1,volume:p.l*p.w*p.h}))),plans=[];
   context.units=units;
-  for(const priority of ['sequence','hybrid','volume','width','balance']){
+  for(const priority of ['sequence','hybrid','volume','balance']){
     context.priority=priority;
     plans.push(await vm.runInContext(`packShipmentAsync(CONTAINERS['20ft'],units,priority,()=>{},false)`,context));
   }
   context.plans=plans;const selected=vm.runInContext('selectBestStrategy(plans)',context),validation=context.LoadwiseValidator.validateShipment({priority:selected.priority,containers:selected.loads,unallocated:selected.remaining,totalUnits:units.length});context.selected=selected;
-  rows.push({file,units:units.length,selected:selected.priority,loaded:validation.metrics.loaded,unallocated:validation.metrics.unallocated,containers:validation.metrics.containers,valid:validation.valid,score:vm.runInContext('strategyScore(selected)',context),errors:validation.errors});
+  const strategies=Object.fromEntries(plans.map(plan=>{context.plan=plan;return[plan.priority,{containers:plan.loads.length,unallocated:plan.remaining.length,score:vm.runInContext('strategyScore(plan)',context)}]}));
+  rows.push({file,units:units.length,selected:selected.priority,loaded:validation.metrics.loaded,unallocated:validation.metrics.unallocated,containers:validation.metrics.containers,valid:validation.valid,score:vm.runInContext('strategyScore(selected)',context),strategies,errors:validation.errors});
 }
-console.table(rows.map(({score,errors,...row})=>row));
+console.table(rows.map(({score,strategies,errors,...row})=>row));
 await writeFile('benchmarks/scenarios.json',JSON.stringify({generatedAt:new Date().toISOString(),rows},null,2));
 const regressions=rows.filter(row=>!row.valid||!expected[row.file]||row.containers>expected[row.file][0]||row.unallocated>expected[row.file][1]);
 if(regressions.length){console.error('Scenario benchmark failed',regressions.map(row=>row.file));process.exitCode=1}

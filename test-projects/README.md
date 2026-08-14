@@ -12,8 +12,7 @@
 | 06 | `06-cylinders.csv` | 원통 적층과 좌우 구름 방향 지지 |
 | 07 | `07-tall-stability.csv` | 고세장 화물의 운송모드별 안정성 |
 | 08 | `08-fragile-topload.csv` | 상부 적재 금지와 누적 압축하중 |
-| 09 | `09-width-combination.csv` | 서로 다른 폭 조합과 폭 최적화 |
+| 09 | `09-width-combination.csv` | 서로 다른 폭 조합과 안전·폭 균형 |
 | 10 | `10-partial-unloadable.csv` | 정상 화물과 과대 화물 혼합 시 부분 적재 경고 |
 
 질문과 개선 결과는 루트의 `SIMULATION-FEEDBACK.md`에 기록한다.
-

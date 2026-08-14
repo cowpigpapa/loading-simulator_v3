@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T15:04:20.012Z",
+  "generatedAt": "2026-08-14T23:48:45.187Z",
   "engine": "extreme-dblf-validated-portfolio-2026.08",
   "rows": [
     {
@@ -12,7 +12,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 568.5,
+      "elapsedMs": 563,
       "errors": ""
     },
     {
@@ -25,7 +25,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 525.2,
+      "elapsedMs": 594.4,
       "errors": ""
     },
     {
@@ -38,7 +38,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 1730.9,
+      "elapsedMs": 1749.4,
       "errors": ""
     },
     {
@@ -51,7 +51,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 590.8,
+      "elapsedMs": 605.7,
       "errors": ""
     },
     {
@@ -64,33 +64,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 817.1,
-      "errors": ""
-    },
-    {
-      "engine": "portfolio",
-      "case": "uniform-36",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 36,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 60.7,
-      "cogRisk": 7.5,
-      "elapsedMs": 197.9,
-      "errors": ""
-    },
-    {
-      "engine": "single",
-      "case": "uniform-36",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 36,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 60.7,
-      "cogRisk": 7.5,
-      "elapsedMs": 254,
+      "elapsedMs": 872.5,
       "errors": ""
     },
     {
@@ -103,7 +77,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 2,
-      "elapsedMs": 862,
+      "elapsedMs": 831.7,
       "errors": ""
     },
     {
@@ -116,7 +90,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 257,
+      "elapsedMs": 262.1,
       "errors": ""
     },
     {
@@ -129,7 +103,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 5.9,
-      "elapsedMs": 645,
+      "elapsedMs": 603,
       "errors": ""
     },
     {
@@ -142,7 +116,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 5.9,
-      "elapsedMs": 226.9,
+      "elapsedMs": 197.2,
       "errors": ""
     },
     {
@@ -155,7 +129,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 5.1,
-      "elapsedMs": 519.6,
+      "elapsedMs": 516.8,
       "errors": ""
     },
     {
@@ -168,7 +142,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 1.2,
-      "elapsedMs": 161.7,
+      "elapsedMs": 136.8,
       "errors": ""
     },
     {
@@ -181,33 +155,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 18.5,
-      "elapsedMs": 471.5,
-      "errors": ""
-    },
-    {
-      "engine": "portfolio",
-      "case": "mixed",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 24,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 23.7,
-      "cogRisk": 2,
-      "elapsedMs": 758.6,
-      "errors": ""
-    },
-    {
-      "engine": "single",
-      "case": "mixed",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 24,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 23.7,
-      "cogRisk": 4.1,
-      "elapsedMs": 258.3,
+      "elapsedMs": 658.2,
       "errors": ""
     },
     {
@@ -220,7 +168,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 0,
-      "elapsedMs": 742.8,
+      "elapsedMs": 808.2,
       "errors": ""
     },
     {
@@ -233,7 +181,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 15.8,
-      "elapsedMs": 259.6,
+      "elapsedMs": 226,
       "errors": ""
     },
     {
@@ -246,7 +194,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 76.3,
+      "elapsedMs": 91,
       "errors": ""
     },
     {
@@ -259,7 +207,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 88.9,
+      "elapsedMs": 7.8,
       "errors": ""
     },
     {
@@ -272,7 +220,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 274.5,
+      "elapsedMs": 265.1,
       "errors": ""
     },
     {
@@ -285,7 +233,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 91.1,
+      "elapsedMs": 60.6,
       "errors": ""
     },
     {
@@ -298,33 +246,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 137.1,
-      "errors": ""
-    },
-    {
-      "engine": "portfolio",
-      "case": "tall",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 12,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 41.6,
-      "cogRisk": 16,
-      "elapsedMs": 89.9,
-      "errors": ""
-    },
-    {
-      "engine": "single",
-      "case": "tall",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 12,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 41.6,
-      "cogRisk": 16,
-      "elapsedMs": 90.9,
+      "elapsedMs": 180.8,
       "errors": ""
     },
     {
@@ -337,7 +259,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 0,
-      "elapsedMs": 244.1,
+      "elapsedMs": 259.1,
       "errors": ""
     },
     {
@@ -350,7 +272,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 91.7,
+      "elapsedMs": 91.3,
       "errors": ""
     },
     {
@@ -363,7 +285,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 229.6,
+      "elapsedMs": 228,
       "errors": ""
     },
     {
@@ -376,7 +298,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 228.2,
+      "elapsedMs": 227.5,
       "errors": ""
     },
     {
@@ -389,7 +311,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 684.7,
+      "elapsedMs": 654,
       "errors": ""
     },
     {
@@ -402,7 +324,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 226.8,
+      "elapsedMs": 229.1,
       "errors": ""
     },
     {
@@ -415,33 +337,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 27.1,
-      "elapsedMs": 365,
-      "errors": ""
-    },
-    {
-      "engine": "portfolio",
-      "case": "cylinders",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 18,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 30.7,
-      "cogRisk": 11.9,
-      "elapsedMs": 134.5,
-      "errors": ""
-    },
-    {
-      "engine": "single",
-      "case": "cylinders",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 18,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 30.7,
-      "cogRisk": 11.9,
-      "elapsedMs": 136.3,
+      "elapsedMs": 362.3,
       "errors": ""
     },
     {
@@ -454,7 +350,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 0,
-      "elapsedMs": 380.6,
+      "elapsedMs": 409.3,
       "errors": ""
     },
     {
@@ -467,7 +363,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 27.1,
-      "elapsedMs": 137,
+      "elapsedMs": 136,
       "errors": ""
     },
     {
@@ -480,7 +376,7 @@
       "containers": 2,
       "volumeRate": 28.2,
       "cogRisk": 20.3,
-      "elapsedMs": 2147.9,
+      "elapsedMs": 2453.5,
       "errors": ""
     },
     {
@@ -493,7 +389,7 @@
       "containers": 2,
       "volumeRate": 28.2,
       "cogRisk": 20.3,
-      "elapsedMs": 729,
+      "elapsedMs": 786.5,
       "errors": ""
     },
     {
@@ -506,7 +402,7 @@
       "containers": 1,
       "volumeRate": 56.3,
       "cogRisk": 8.2,
-      "elapsedMs": 1907,
+      "elapsedMs": 1970.1,
       "errors": ""
     },
     {
@@ -519,7 +415,7 @@
       "containers": 1,
       "volumeRate": 56.3,
       "cogRisk": 8.2,
-      "elapsedMs": 625.6,
+      "elapsedMs": 749.3,
       "errors": ""
     },
     {
@@ -532,33 +428,7 @@
       "containers": 1,
       "volumeRate": 56.3,
       "cogRisk": 8.5,
-      "elapsedMs": 1319.5,
-      "errors": ""
-    },
-    {
-      "engine": "portfolio",
-      "case": "width-mix",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 40,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 56.3,
-      "cogRisk": 8.5,
-      "elapsedMs": 3033.4,
-      "errors": ""
-    },
-    {
-      "engine": "single",
-      "case": "width-mix",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 40,
-      "unallocated": 0,
-      "containers": 2,
-      "volumeRate": 28.2,
-      "cogRisk": 34,
-      "elapsedMs": 563.8,
+      "elapsedMs": 1284.7,
       "errors": ""
     },
     {
@@ -571,7 +441,7 @@
       "containers": 1,
       "volumeRate": 56.3,
       "cogRisk": 5.1,
-      "elapsedMs": 2049,
+      "elapsedMs": 2412.8,
       "errors": ""
     },
     {
@@ -584,7 +454,7 @@
       "containers": 2,
       "volumeRate": 28.2,
       "cogRisk": 45.5,
-      "elapsedMs": 366.6,
+      "elapsedMs": 456.7,
       "errors": ""
     },
     {
@@ -597,7 +467,7 @@
       "containers": 2,
       "volumeRate": 11.3,
       "cogRisk": 44.1,
-      "elapsedMs": 652.9,
+      "elapsedMs": 756.6,
       "errors": ""
     },
     {
@@ -610,7 +480,7 @@
       "containers": 2,
       "volumeRate": 11.3,
       "cogRisk": 44.1,
-      "elapsedMs": 213,
+      "elapsedMs": 242.3,
       "errors": ""
     },
     {
@@ -623,7 +493,7 @@
       "containers": 1,
       "volumeRate": 22.6,
       "cogRisk": 4.5,
-      "elapsedMs": 536.9,
+      "elapsedMs": 517.6,
       "errors": ""
     },
     {
@@ -636,7 +506,7 @@
       "containers": 1,
       "volumeRate": 22.6,
       "cogRisk": 4.5,
-      "elapsedMs": 182.4,
+      "elapsedMs": 179.2,
       "errors": ""
     },
     {
@@ -649,33 +519,7 @@
       "containers": 1,
       "volumeRate": 22.6,
       "cogRisk": 3.7,
-      "elapsedMs": 412.7,
-      "errors": ""
-    },
-    {
-      "engine": "portfolio",
-      "case": "fragile-mix",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 24,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 22.6,
-      "cogRisk": 11.1,
-      "elapsedMs": 830.6,
-      "errors": ""
-    },
-    {
-      "engine": "single",
-      "case": "fragile-mix",
-      "strategy": "width",
-      "valid": true,
-      "loaded": 24,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 22.6,
-      "cogRisk": 11.1,
-      "elapsedMs": 184.6,
+      "elapsedMs": 482.8,
       "errors": ""
     },
     {
@@ -688,7 +532,7 @@
       "containers": 1,
       "volumeRate": 22.6,
       "cogRisk": 1.8,
-      "elapsedMs": 503,
+      "elapsedMs": 511.4,
       "errors": ""
     },
     {
@@ -701,7 +545,7 @@
       "containers": 1,
       "volumeRate": 22.6,
       "cogRisk": 3.7,
-      "elapsedMs": 240.8,
+      "elapsedMs": 172.1,
       "errors": ""
     }
   ]

@@ -13,7 +13,7 @@ const cases=[
   {name:'fragile-mix',items:[...Array.from({length:6},(_,i)=>({...base,name:'fragile',l:900,w:700,h:500,weight:60,fragile:true,unit:i+1,volume:315000000})),...Array.from({length:18},(_,i)=>({...base,name:'strong',l:800,w:600,h:650,weight:180,unit:i+7,volume:312000000}))]}
 ];
 const rows=[];
-for(const sample of cases)for(const strategy of ['sequence','hybrid','volume','width','balance']){
+for(const sample of cases)for(const strategy of ['sequence','hybrid','volume','balance']){
   context.sample=sample.items;const start=performance.now(),plan=vm.runInContext(`packShipmentAsync(CONTAINERS['20ft'],sample,'${strategy}')`,context);const shipment=await plan,elapsed=performance.now()-start,validation=context.LoadwiseValidator.validateShipment({priority:strategy,containers:shipment.loads,unallocated:shipment.remaining,totalUnits:sample.items.length});
   const volumeRate=shipment.loads.reduce((sum,load)=>sum+load.volumeRate,0)/Math.max(1,shipment.loads.length),cogRisk=shipment.loads.reduce((worst,load)=>{const b=context.LoadwiseInsights.balance(load);return Math.max(worst,b?Math.max(Math.abs(b.xOffset),Math.abs(b.yOffset)):100)},0);
   rows.push({engine:'portfolio',case:sample.name,strategy,valid:validation.valid,loaded:validation.metrics.loaded,unallocated:validation.metrics.unallocated,containers:validation.metrics.containers,volumeRate:Number(volumeRate.toFixed(1)),cogRisk:Number(cogRisk.toFixed(1)),elapsedMs:Number(elapsed.toFixed(1)),errors:validation.errors.join('; ')});
