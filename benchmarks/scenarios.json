@@ -1,0 +1,205 @@
+{
+  "generatedAt": "2026-08-14T15:01:10.345Z",
+  "rows": [
+    {
+      "file": "01-single-small.csv",
+      "units": 72,
+      "selected": "hybrid",
+      "loaded": 72,
+      "unallocated": 0,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        0,
+        1,
+        1,
+        0,
+        2.221726190476204,
+        8.67243133265514,
+        -72,
+        5898
+      ],
+      "errors": []
+    },
+    {
+      "file": "02-single-medium.csv",
+      "units": 42,
+      "selected": "balance",
+      "loaded": 42,
+      "unallocated": 0,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        -42,
+        5679
+      ],
+      "errors": []
+    },
+    {
+      "file": "03-single-large.csv",
+      "units": 8,
+      "selected": "balance",
+      "loaded": 8,
+      "unallocated": 0,
+      "containers": 2,
+      "valid": true,
+      "score": [
+        0,
+        2,
+        1,
+        0,
+        29.36363636363636,
+        0,
+        -8,
+        10298
+      ],
+      "errors": []
+    },
+    {
+      "file": "04-mixed-heavy.csv",
+      "units": 23,
+      "selected": "hybrid",
+      "loaded": 23,
+      "unallocated": 0,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        1.7460198133657623,
+        -23,
+        5898
+      ],
+      "errors": []
+    },
+    {
+      "file": "05-mixed-sizes.csv",
+      "units": 37,
+      "selected": "balance",
+      "loaded": 37,
+      "unallocated": 0,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        0,
+        1,
+        1,
+        0,
+        0,
+        5.120693769388246,
+        -37,
+        5898
+      ],
+      "errors": []
+    },
+    {
+      "file": "06-cylinders.csv",
+      "units": 24,
+      "selected": "balance",
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        0,
+        1,
+        1,
+        10,
+        33.2994227994228,
+        0.002576788291075438,
+        -24,
+        4651
+      ],
+      "errors": []
+    },
+    {
+      "file": "07-tall-stability.csv",
+      "units": 14,
+      "selected": "balance",
+      "loaded": 14,
+      "unallocated": 0,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        0,
+        1,
+        1,
+        1,
+        25.683737458194003,
+        0.014788524105291412,
+        -14,
+        5065
+      ],
+      "errors": []
+    },
+    {
+      "file": "08-fragile-topload.csv",
+      "units": 28,
+      "selected": "hybrid",
+      "loaded": 28,
+      "unallocated": 0,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        4.687253110913447,
+        -28,
+        5898
+      ],
+      "errors": []
+    },
+    {
+      "file": "09-width-combination.csv",
+      "units": 40,
+      "selected": "hybrid",
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        4.004565370239455,
+        -40,
+        5898
+      ],
+      "errors": []
+    },
+    {
+      "file": "10-partial-unloadable.csv",
+      "units": 14,
+      "selected": "balance",
+      "loaded": 12,
+      "unallocated": 2,
+      "containers": 1,
+      "valid": true,
+      "score": [
+        2,
+        1,
+        1,
+        0,
+        13.724999999999994,
+        0.31179138321995037,
+        -12,
+        4949
+      ],
+      "errors": []
+    }
+  ]
+}

@@ -155,6 +155,7 @@ SIMULATION-FEEDBACK.md 시뮬레이션 질문·판정·개선 이력
 test-projects/      반복 검토용 CSV 화물 10종
 solution-validator.js 독립 결과 검증기
 benchmark.mjs       전략별 품질·안전·시간 비교
+scenario-benchmark.mjs  10개 CSV 자동 추천 품질 회귀 검사
 ```
 
 ## 기술 구성

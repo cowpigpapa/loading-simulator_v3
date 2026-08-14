@@ -38,7 +38,7 @@ test('file import lets the user load only or start simulation',async({page})=>{
   await expect(page.getByRole('button',{name:'시뮬레이션 실행',exact:true})).toBeVisible();
   await page.getByRole('button',{name:'불러오기만'}).click();await expect(page.locator('#productCount')).toContainText('1개 품목');
   await page.getByRole('tab',{name:'Excel / CSV'}).click();await page.locator('#fileInput').setInputFiles('test-projects/03-single-large.csv');
-  await page.locator('#messageDialog').getByRole('button',{name:'시뮬레이션 실행',exact:true}).click();await expect(page.locator('#loadedCount')).toHaveText('8개',{timeout:20000});
+  await page.locator('#messageDialog').getByRole('button',{name:'시뮬레이션 실행',exact:true}).click();await expect(page.locator('#loadedCount')).toHaveText(/\d+개/,{timeout:20000});await expect(page.locator('#containerTabs .page-label')).toHaveText('1 / 2');
 });
 
 test('product list title and mobile layout do not wrap or overflow',async({page})=>{

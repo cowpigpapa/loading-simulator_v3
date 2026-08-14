@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-14T14:14:59.928Z",
-  "engine": "extreme-dblf-balanced-center-2026.08",
+  "generatedAt": "2026-08-14T15:04:20.012Z",
+  "engine": "extreme-dblf-validated-portfolio-2026.08",
   "rows": [
     {
       "engine": "portfolio",
@@ -12,7 +12,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 467.5,
+      "elapsedMs": 568.5,
       "errors": ""
     },
     {
@@ -25,7 +25,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 454.1,
+      "elapsedMs": 525.2,
       "errors": ""
     },
     {
@@ -38,7 +38,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 1368.8,
+      "elapsedMs": 1730.9,
       "errors": ""
     },
     {
@@ -51,7 +51,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 521.7,
+      "elapsedMs": 590.8,
       "errors": ""
     },
     {
@@ -64,7 +64,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 658.9,
+      "elapsedMs": 817.1,
       "errors": ""
     },
     {
@@ -77,7 +77,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 241.1,
+      "elapsedMs": 197.9,
       "errors": ""
     },
     {
@@ -90,7 +90,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 220,
+      "elapsedMs": 254,
       "errors": ""
     },
     {
@@ -103,7 +103,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 2,
-      "elapsedMs": 643.2,
+      "elapsedMs": 862,
       "errors": ""
     },
     {
@@ -116,7 +116,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 240.1,
+      "elapsedMs": 257,
       "errors": ""
     },
     {
@@ -128,8 +128,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 3.8,
-      "elapsedMs": 617.2,
+      "cogRisk": 5.9,
+      "elapsedMs": 645,
       "errors": ""
     },
     {
@@ -141,8 +141,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 7.8,
-      "elapsedMs": 201.6,
+      "cogRisk": 5.9,
+      "elapsedMs": 226.9,
       "errors": ""
     },
     {
@@ -154,8 +154,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 2.4,
-      "elapsedMs": 690,
+      "cogRisk": 5.1,
+      "elapsedMs": 519.6,
       "errors": ""
     },
     {
@@ -167,8 +167,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 4.9,
-      "elapsedMs": 238.7,
+      "cogRisk": 1.2,
+      "elapsedMs": 161.7,
       "errors": ""
     },
     {
@@ -181,7 +181,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 18.5,
-      "elapsedMs": 600.1,
+      "elapsedMs": 471.5,
       "errors": ""
     },
     {
@@ -193,8 +193,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 5.6,
-      "elapsedMs": 617.2,
+      "cogRisk": 2,
+      "elapsedMs": 758.6,
       "errors": ""
     },
     {
@@ -206,8 +206,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 5.6,
-      "elapsedMs": 296.5,
+      "cogRisk": 4.1,
+      "elapsedMs": 258.3,
       "errors": ""
     },
     {
@@ -219,8 +219,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 1,
-      "elapsedMs": 1025.6,
+      "cogRisk": 0,
+      "elapsedMs": 742.8,
       "errors": ""
     },
     {
@@ -232,8 +232,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 17.2,
-      "elapsedMs": 298.9,
+      "cogRisk": 15.8,
+      "elapsedMs": 259.6,
       "errors": ""
     },
     {
@@ -246,7 +246,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 87.4,
+      "elapsedMs": 76.3,
       "errors": ""
     },
     {
@@ -259,7 +259,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 69.2,
+      "elapsedMs": 88.9,
       "errors": ""
     },
     {
@@ -272,7 +272,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 209.9,
+      "elapsedMs": 274.5,
       "errors": ""
     },
     {
@@ -285,7 +285,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 43.8,
+      "elapsedMs": 91.1,
       "errors": ""
     },
     {
@@ -298,7 +298,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 134.4,
+      "elapsedMs": 137.1,
       "errors": ""
     },
     {
@@ -311,7 +311,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 101.1,
+      "elapsedMs": 89.9,
       "errors": ""
     },
     {
@@ -324,7 +324,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 96.9,
+      "elapsedMs": 90.9,
       "errors": ""
     },
     {
@@ -337,7 +337,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 0,
-      "elapsedMs": 229.1,
+      "elapsedMs": 244.1,
       "errors": ""
     },
     {
@@ -350,7 +350,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 60.7,
+      "elapsedMs": 91.7,
       "errors": ""
     },
     {
@@ -363,7 +363,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 121.8,
+      "elapsedMs": 229.6,
       "errors": ""
     },
     {
@@ -376,7 +376,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 124.7,
+      "elapsedMs": 228.2,
       "errors": ""
     },
     {
@@ -389,7 +389,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 491.3,
+      "elapsedMs": 684.7,
       "errors": ""
     },
     {
@@ -402,7 +402,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 146.5,
+      "elapsedMs": 226.8,
       "errors": ""
     },
     {
@@ -415,7 +415,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 27.1,
-      "elapsedMs": 243.1,
+      "elapsedMs": 365,
       "errors": ""
     },
     {
@@ -428,7 +428,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 66.1,
+      "elapsedMs": 134.5,
       "errors": ""
     },
     {
@@ -441,7 +441,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 11.9,
-      "elapsedMs": 78.9,
+      "elapsedMs": 136.3,
       "errors": ""
     },
     {
@@ -454,7 +454,7 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 0,
-      "elapsedMs": 289.1,
+      "elapsedMs": 380.6,
       "errors": ""
     },
     {
@@ -467,59 +467,59 @@
       "containers": 1,
       "volumeRate": 30.7,
       "cogRisk": 27.1,
-      "elapsedMs": 88.4,
+      "elapsedMs": 137,
       "errors": ""
     },
     {
       "engine": "portfolio",
       "case": "width-mix",
       "strategy": "sequence",
-      "valid": true,
-      "loaded": 40,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 56.3,
-      "cogRisk": 8.5,
-      "elapsedMs": 1479.3,
-      "errors": ""
-    },
-    {
-      "engine": "single",
-      "case": "width-mix",
-      "strategy": "sequence",
-      "valid": true,
-      "loaded": 40,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 56.3,
-      "cogRisk": 8.5,
-      "elapsedMs": 485.6,
-      "errors": ""
-    },
-    {
-      "engine": "portfolio",
-      "case": "width-mix",
-      "strategy": "hybrid",
-      "valid": true,
-      "loaded": 40,
-      "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 56.3,
-      "cogRisk": 8.5,
-      "elapsedMs": 2199.3,
-      "errors": ""
-    },
-    {
-      "engine": "single",
-      "case": "width-mix",
-      "strategy": "hybrid",
       "valid": true,
       "loaded": 40,
       "unallocated": 0,
       "containers": 2,
       "volumeRate": 28.2,
-      "cogRisk": 16.1,
-      "elapsedMs": 603.8,
+      "cogRisk": 20.3,
+      "elapsedMs": 2147.9,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "width-mix",
+      "strategy": "sequence",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 2,
+      "volumeRate": 28.2,
+      "cogRisk": 20.3,
+      "elapsedMs": 729,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "width-mix",
+      "strategy": "hybrid",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 56.3,
+      "cogRisk": 8.2,
+      "elapsedMs": 1907,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "width-mix",
+      "strategy": "hybrid",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 56.3,
+      "cogRisk": 8.2,
+      "elapsedMs": 625.6,
       "errors": ""
     },
     {
@@ -532,7 +532,7 @@
       "containers": 1,
       "volumeRate": 56.3,
       "cogRisk": 8.5,
-      "elapsedMs": 938.4,
+      "elapsedMs": 1319.5,
       "errors": ""
     },
     {
@@ -545,7 +545,7 @@
       "containers": 1,
       "volumeRate": 56.3,
       "cogRisk": 8.5,
-      "elapsedMs": 1146.3,
+      "elapsedMs": 3033.4,
       "errors": ""
     },
     {
@@ -557,8 +557,8 @@
       "unallocated": 0,
       "containers": 2,
       "volumeRate": 28.2,
-      "cogRisk": 16.1,
-      "elapsedMs": 297.5,
+      "cogRisk": 34,
+      "elapsedMs": 563.8,
       "errors": ""
     },
     {
@@ -570,8 +570,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 56.3,
-      "cogRisk": 1.6,
-      "elapsedMs": 1278.8,
+      "cogRisk": 5.1,
+      "elapsedMs": 2049,
       "errors": ""
     },
     {
@@ -583,8 +583,8 @@
       "unallocated": 0,
       "containers": 2,
       "volumeRate": 28.2,
-      "cogRisk": 34.1,
-      "elapsedMs": 339.1,
+      "cogRisk": 45.5,
+      "elapsedMs": 366.6,
       "errors": ""
     },
     {
@@ -594,10 +594,10 @@
       "valid": true,
       "loaded": 24,
       "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 22.6,
-      "cogRisk": 7.7,
-      "elapsedMs": 521.8,
+      "containers": 2,
+      "volumeRate": 11.3,
+      "cogRisk": 44.1,
+      "elapsedMs": 652.9,
       "errors": ""
     },
     {
@@ -607,10 +607,10 @@
       "valid": true,
       "loaded": 24,
       "unallocated": 0,
-      "containers": 1,
-      "volumeRate": 22.6,
-      "cogRisk": 7.7,
-      "elapsedMs": 143.2,
+      "containers": 2,
+      "volumeRate": 11.3,
+      "cogRisk": 44.1,
+      "elapsedMs": 213,
       "errors": ""
     },
     {
@@ -622,8 +622,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 22.6,
-      "cogRisk": 3.7,
-      "elapsedMs": 400.2,
+      "cogRisk": 4.5,
+      "elapsedMs": 536.9,
       "errors": ""
     },
     {
@@ -635,8 +635,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 22.6,
-      "cogRisk": 3.7,
-      "elapsedMs": 156.7,
+      "cogRisk": 4.5,
+      "elapsedMs": 182.4,
       "errors": ""
     },
     {
@@ -649,7 +649,7 @@
       "containers": 1,
       "volumeRate": 22.6,
       "cogRisk": 3.7,
-      "elapsedMs": 292.1,
+      "elapsedMs": 412.7,
       "errors": ""
     },
     {
@@ -661,8 +661,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 22.6,
-      "cogRisk": 3.7,
-      "elapsedMs": 504.3,
+      "cogRisk": 11.1,
+      "elapsedMs": 830.6,
       "errors": ""
     },
     {
@@ -674,8 +674,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 22.6,
-      "cogRisk": 3.7,
-      "elapsedMs": 158.7,
+      "cogRisk": 11.1,
+      "elapsedMs": 184.6,
       "errors": ""
     },
     {
@@ -687,8 +687,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 22.6,
-      "cogRisk": 0.2,
-      "elapsedMs": 495.3,
+      "cogRisk": 1.8,
+      "elapsedMs": 503,
       "errors": ""
     },
     {
@@ -701,7 +701,7 @@
       "containers": 1,
       "volumeRate": 22.6,
       "cogRisk": 3.7,
-      "elapsedMs": 164.1,
+      "elapsedMs": 240.8,
       "errors": ""
     }
   ]
