@@ -7,7 +7,10 @@ const base={name:'box',group:'benchmark',shape:'box',l:1000,w:800,h:700,weight:1
 const cases=[
   {name:'uniform-36',items:Array.from({length:36},(_,i)=>({...base,unit:i+1}))},
   {name:'mixed',items:Array.from({length:24},(_,i)=>({...base,l:600+(i%4)*180,w:500+(i%3)*140,h:450+(i%2)*250,weight:80+i*7,unit:i+1,volume:(600+(i%4)*180)*(500+(i%3)*140)*(450+(i%2)*250)}))},
-  {name:'tall',items:Array.from({length:12},(_,i)=>({...base,l:800,w:800,h:1800,rotate:false,unit:i+1,volume:1152000000}))}
+  {name:'tall',items:Array.from({length:12},(_,i)=>({...base,l:800,w:800,h:1800,rotate:false,unit:i+1,volume:1152000000}))},
+  {name:'cylinders',items:Array.from({length:18},(_,i)=>({...base,name:'drum',shape:'cylinder',l:900,w:900,h:700,weight:310,rotate:false,unit:i+1,volume:567000000}))},
+  {name:'width-mix',items:[...Array.from({length:12},(_,i)=>({...base,name:'wide',w:820,unit:i+1,volume:574000000})),...Array.from({length:12},(_,i)=>({...base,name:'medium',w:700,unit:i+13,volume:490000000})),...Array.from({length:16},(_,i)=>({...base,name:'narrow',w:530,unit:i+25,volume:371000000}))]},
+  {name:'fragile-mix',items:[...Array.from({length:6},(_,i)=>({...base,name:'fragile',l:900,w:700,h:500,weight:60,fragile:true,unit:i+1,volume:315000000})),...Array.from({length:18},(_,i)=>({...base,name:'strong',l:800,w:600,h:650,weight:180,unit:i+7,volume:312000000}))]}
 ];
 const rows=[];
 for(const sample of cases)for(const strategy of ['sequence','hybrid','volume','width','balance']){
@@ -21,6 +24,7 @@ for(const sample of cases)for(const strategy of ['sequence','hybrid','volume','w
 }
 console.table(rows);
 await mkdir('benchmarks',{recursive:true});
-await writeFile('benchmarks/latest.json',JSON.stringify({generatedAt:new Date().toISOString(),engine:'extreme-dblf-transport-stability-2026.08',rows},null,2));
+await writeFile('benchmarks/latest.json',JSON.stringify({generatedAt:new Date().toISOString(),engine:'extreme-dblf-balanced-center-2026.08',rows},null,2));
 const regressions=rows.filter(r=>r.engine==='portfolio').flatMap(portfolio=>{const single=rows.find(r=>r.engine==='single'&&r.case===portfolio.case&&r.strategy===portfolio.strategy);if(!single)return[];const worse=portfolio.unallocated>single.unallocated||portfolio.containers>single.containers||(portfolio.strategy==='balance'&&portfolio.cogRisk>single.cogRisk+.1);return worse?[`${portfolio.case}/${portfolio.strategy}`]:[]});
-if(rows.some(r=>!r.valid)||regressions.length){console.error('Benchmark gate failed',regressions);process.exitCode=1}
+const balanceGate=rows.find(r=>r.engine==='portfolio'&&r.case==='uniform-36'&&r.strategy==='balance');
+if(rows.some(r=>!r.valid)||regressions.length||!balanceGate||balanceGate.containers!==1||balanceGate.cogRisk>5){console.error('Benchmark gate failed',{regressions,balanceGate});process.exitCode=1}

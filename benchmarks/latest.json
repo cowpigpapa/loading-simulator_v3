@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-08-14T13:13:42.661Z",
-  "engine": "extreme-dblf-transport-stability-2026.08",
+  "generatedAt": "2026-08-14T14:14:59.928Z",
+  "engine": "extreme-dblf-balanced-center-2026.08",
   "rows": [
     {
       "engine": "portfolio",
@@ -12,7 +12,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 479.3,
+      "elapsedMs": 467.5,
       "errors": ""
     },
     {
@@ -25,7 +25,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 530.6,
+      "elapsedMs": 454.1,
       "errors": ""
     },
     {
@@ -38,7 +38,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 1598.4,
+      "elapsedMs": 1368.8,
       "errors": ""
     },
     {
@@ -51,7 +51,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 439.5,
+      "elapsedMs": 521.7,
       "errors": ""
     },
     {
@@ -64,7 +64,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 769.9,
+      "elapsedMs": 658.9,
       "errors": ""
     },
     {
@@ -77,7 +77,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 215.9,
+      "elapsedMs": 241.1,
       "errors": ""
     },
     {
@@ -90,7 +90,7 @@
       "containers": 1,
       "volumeRate": 60.7,
       "cogRisk": 7.5,
-      "elapsedMs": 194.7,
+      "elapsedMs": 220,
       "errors": ""
     },
     {
@@ -100,10 +100,10 @@
       "valid": true,
       "loaded": 36,
       "unallocated": 0,
-      "containers": 2,
-      "volumeRate": 30.4,
-      "cogRisk": 16.7,
-      "elapsedMs": 1053.1,
+      "containers": 1,
+      "volumeRate": 60.7,
+      "cogRisk": 2,
+      "elapsedMs": 643.2,
       "errors": ""
     },
     {
@@ -113,10 +113,10 @@
       "valid": true,
       "loaded": 36,
       "unallocated": 0,
-      "containers": 2,
-      "volumeRate": 30.4,
-      "cogRisk": 16.7,
-      "elapsedMs": 332.2,
+      "containers": 1,
+      "volumeRate": 60.7,
+      "cogRisk": 7.5,
+      "elapsedMs": 240.1,
       "errors": ""
     },
     {
@@ -129,7 +129,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 3.8,
-      "elapsedMs": 675.7,
+      "elapsedMs": 617.2,
       "errors": ""
     },
     {
@@ -142,7 +142,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 7.8,
-      "elapsedMs": 218.5,
+      "elapsedMs": 201.6,
       "errors": ""
     },
     {
@@ -155,7 +155,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 2.4,
-      "elapsedMs": 696.3,
+      "elapsedMs": 690,
       "errors": ""
     },
     {
@@ -168,7 +168,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 4.9,
-      "elapsedMs": 254.2,
+      "elapsedMs": 238.7,
       "errors": ""
     },
     {
@@ -181,7 +181,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 18.5,
-      "elapsedMs": 498.4,
+      "elapsedMs": 600.1,
       "errors": ""
     },
     {
@@ -194,7 +194,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 5.6,
-      "elapsedMs": 624.7,
+      "elapsedMs": 617.2,
       "errors": ""
     },
     {
@@ -207,7 +207,7 @@
       "containers": 1,
       "volumeRate": 23.7,
       "cogRisk": 5.6,
-      "elapsedMs": 211.8,
+      "elapsedMs": 296.5,
       "errors": ""
     },
     {
@@ -219,8 +219,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 2,
-      "elapsedMs": 3246.6,
+      "cogRisk": 1,
+      "elapsedMs": 1025.6,
       "errors": ""
     },
     {
@@ -232,8 +232,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 23.7,
-      "cogRisk": 2.1,
-      "elapsedMs": 785.4,
+      "cogRisk": 17.2,
+      "elapsedMs": 298.9,
       "errors": ""
     },
     {
@@ -246,7 +246,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 83.1,
+      "elapsedMs": 87.4,
       "errors": ""
     },
     {
@@ -259,7 +259,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 103,
+      "elapsedMs": 69.2,
       "errors": ""
     },
     {
@@ -272,7 +272,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 205.2,
+      "elapsedMs": 209.9,
       "errors": ""
     },
     {
@@ -285,7 +285,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 105.8,
+      "elapsedMs": 43.8,
       "errors": ""
     },
     {
@@ -298,7 +298,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 188.9,
+      "elapsedMs": 134.4,
       "errors": ""
     },
     {
@@ -311,7 +311,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 107.6,
+      "elapsedMs": 101.1,
       "errors": ""
     },
     {
@@ -324,7 +324,7 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 82.2,
+      "elapsedMs": 96.9,
       "errors": ""
     },
     {
@@ -336,8 +336,8 @@
       "unallocated": 0,
       "containers": 1,
       "volumeRate": 41.6,
-      "cogRisk": 16,
-      "elapsedMs": 196.5,
+      "cogRisk": 0,
+      "elapsedMs": 229.1,
       "errors": ""
     },
     {
@@ -350,7 +350,358 @@
       "containers": 1,
       "volumeRate": 41.6,
       "cogRisk": 16,
-      "elapsedMs": 96.6,
+      "elapsedMs": 60.7,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "cylinders",
+      "strategy": "sequence",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 11.9,
+      "elapsedMs": 121.8,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "cylinders",
+      "strategy": "sequence",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 11.9,
+      "elapsedMs": 124.7,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "cylinders",
+      "strategy": "hybrid",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 11.9,
+      "elapsedMs": 491.3,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "cylinders",
+      "strategy": "hybrid",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 11.9,
+      "elapsedMs": 146.5,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "cylinders",
+      "strategy": "volume",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 27.1,
+      "elapsedMs": 243.1,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "cylinders",
+      "strategy": "width",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 11.9,
+      "elapsedMs": 66.1,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "cylinders",
+      "strategy": "width",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 11.9,
+      "elapsedMs": 78.9,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "cylinders",
+      "strategy": "balance",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 0,
+      "elapsedMs": 289.1,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "cylinders",
+      "strategy": "balance",
+      "valid": true,
+      "loaded": 18,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 30.7,
+      "cogRisk": 27.1,
+      "elapsedMs": 88.4,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "width-mix",
+      "strategy": "sequence",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 56.3,
+      "cogRisk": 8.5,
+      "elapsedMs": 1479.3,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "width-mix",
+      "strategy": "sequence",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 56.3,
+      "cogRisk": 8.5,
+      "elapsedMs": 485.6,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "width-mix",
+      "strategy": "hybrid",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 56.3,
+      "cogRisk": 8.5,
+      "elapsedMs": 2199.3,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "width-mix",
+      "strategy": "hybrid",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 2,
+      "volumeRate": 28.2,
+      "cogRisk": 16.1,
+      "elapsedMs": 603.8,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "width-mix",
+      "strategy": "volume",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 56.3,
+      "cogRisk": 8.5,
+      "elapsedMs": 938.4,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "width-mix",
+      "strategy": "width",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 56.3,
+      "cogRisk": 8.5,
+      "elapsedMs": 1146.3,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "width-mix",
+      "strategy": "width",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 2,
+      "volumeRate": 28.2,
+      "cogRisk": 16.1,
+      "elapsedMs": 297.5,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "width-mix",
+      "strategy": "balance",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 56.3,
+      "cogRisk": 1.6,
+      "elapsedMs": 1278.8,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "width-mix",
+      "strategy": "balance",
+      "valid": true,
+      "loaded": 40,
+      "unallocated": 0,
+      "containers": 2,
+      "volumeRate": 28.2,
+      "cogRisk": 34.1,
+      "elapsedMs": 339.1,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "fragile-mix",
+      "strategy": "sequence",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 7.7,
+      "elapsedMs": 521.8,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "fragile-mix",
+      "strategy": "sequence",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 7.7,
+      "elapsedMs": 143.2,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "fragile-mix",
+      "strategy": "hybrid",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 3.7,
+      "elapsedMs": 400.2,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "fragile-mix",
+      "strategy": "hybrid",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 3.7,
+      "elapsedMs": 156.7,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "fragile-mix",
+      "strategy": "volume",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 3.7,
+      "elapsedMs": 292.1,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "fragile-mix",
+      "strategy": "width",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 3.7,
+      "elapsedMs": 504.3,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "fragile-mix",
+      "strategy": "width",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 3.7,
+      "elapsedMs": 158.7,
+      "errors": ""
+    },
+    {
+      "engine": "portfolio",
+      "case": "fragile-mix",
+      "strategy": "balance",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 0.2,
+      "elapsedMs": 495.3,
+      "errors": ""
+    },
+    {
+      "engine": "single",
+      "case": "fragile-mix",
+      "strategy": "balance",
+      "valid": true,
+      "loaded": 24,
+      "unallocated": 0,
+      "containers": 1,
+      "volumeRate": 22.6,
+      "cogRisk": 3.7,
+      "elapsedMs": 164.1,
       "errors": ""
     }
   ]
