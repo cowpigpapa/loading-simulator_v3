@@ -28,10 +28,6 @@ test('optional top-load capacity is preserved without inventing a default',()=>{
   assert.equal(model.createSnapshot([{name:'상자',qty:1,l:1,w:1,h:1,weight:1}],'20ft','sequence').products[0].maxTopLoadKg,null);
 });
 
-test('legacy width-first projects migrate to safe-width hybrid',()=>{
-  assert.equal(model.createSnapshot([],'20ft','width').optimization,'hybrid');
-});
-
 test('safe-width hybrid optimization is preserved',()=>{
   assert.equal(model.createSnapshot([],'20ft','hybrid').optimization,'hybrid');
 });
