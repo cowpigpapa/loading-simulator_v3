@@ -11,3 +11,5 @@ supabase/.temp/
 test-results/
 playwright-report/
 tmp/
+media/*.mp4
+debug.log
