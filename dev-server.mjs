@@ -11,4 +11,4 @@ createServer(async (req, res) => {
   if (!file.startsWith(root)) return res.writeHead(403).end();
   try { await stat(file); res.writeHead(200, { "Content-Type": types[extname(file)] || "application/octet-stream" }); createReadStream(file).pipe(res); }
   catch { res.writeHead(404).end("Not found"); }
-}).listen(Number(process.env.PORT)||4173, "127.0.0.1", function(){console.log(`Local: http://127.0.0.1:${this.address().port}`)});
+}).listen(Number(process.argv.find((arg) => arg.startsWith("--port="))?.split("=")[1] || process.env.PORT) || 4173, "127.0.0.1", function(){console.log(`Local: http://127.0.0.1:${this.address().port}`)});
